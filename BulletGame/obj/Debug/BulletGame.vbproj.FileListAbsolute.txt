@@ -1,0 +1,12 @@
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\bin\Debug\BulletGame.exe.config
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\bin\Debug\BulletGame.exe
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\bin\Debug\BulletGame.pdb
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\bin\Debug\BulletGame.xml
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.vbprojResolveAssemblyReference.cache
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.GameSettings.resources
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.Resources.resources
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.vbproj.GenerateResource.Cache
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.exe
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.xml
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.pdb
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.Game.resources
