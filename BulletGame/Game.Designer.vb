@@ -49,6 +49,14 @@ Partial Class Game
         Me.btnDDrop = New System.Windows.Forms.Button()
         Me.timDrop = New System.Windows.Forms.Timer(Me.components)
         Me.timProjectile = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblScore = New System.Windows.Forms.Label()
+        Me.lblTime = New System.Windows.Forms.Label()
+        Me.lblSpecial = New System.Windows.Forms.Label()
+        Me.lblLife = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -340,7 +348,7 @@ Partial Class Game
         'btnDDrop
         '
         Me.btnDDrop.Font = New System.Drawing.Font("Comic Sans MS", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDDrop.Location = New System.Drawing.Point(12, 402)
+        Me.btnDDrop.Location = New System.Drawing.Point(962, 255)
         Me.btnDDrop.Name = "btnDDrop"
         Me.btnDDrop.Size = New System.Drawing.Size(153, 121)
         Me.btnDDrop.TabIndex = 23
@@ -355,11 +363,95 @@ Partial Class Game
         '
         Me.timProjectile.Enabled = True
         '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(851, 51)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(105, 21)
+        Me.Label1.TabIndex = 24
+        Me.Label1.Text = "Score"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label2
+        '
+        Me.Label2.Location = New System.Drawing.Point(851, 115)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(105, 21)
+        Me.Label2.TabIndex = 25
+        Me.Label2.Text = "Time"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label3
+        '
+        Me.Label3.Location = New System.Drawing.Point(851, 467)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(105, 21)
+        Me.Label3.TabIndex = 26
+        Me.Label3.Text = "Life"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label4
+        '
+        Me.Label4.Location = New System.Drawing.Point(851, 531)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(105, 21)
+        Me.Label4.TabIndex = 27
+        Me.Label4.Text = "Special"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblScore
+        '
+        Me.lblScore.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblScore.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblScore.Location = New System.Drawing.Point(962, 45)
+        Me.lblScore.Name = "lblScore"
+        Me.lblScore.Size = New System.Drawing.Size(137, 32)
+        Me.lblScore.TabIndex = 28
+        Me.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblTime
+        '
+        Me.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTime.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTime.Location = New System.Drawing.Point(962, 110)
+        Me.lblTime.Name = "lblTime"
+        Me.lblTime.Size = New System.Drawing.Size(137, 32)
+        Me.lblTime.TabIndex = 29
+        Me.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblSpecial
+        '
+        Me.lblSpecial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblSpecial.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSpecial.Location = New System.Drawing.Point(962, 527)
+        Me.lblSpecial.Name = "lblSpecial"
+        Me.lblSpecial.Size = New System.Drawing.Size(137, 32)
+        Me.lblSpecial.TabIndex = 31
+        Me.lblSpecial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblLife
+        '
+        Me.lblLife.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblLife.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLife.Location = New System.Drawing.Point(962, 462)
+        Me.lblLife.Name = "lblLife"
+        Me.lblLife.Size = New System.Drawing.Size(137, 32)
+        Me.lblLife.TabIndex = 30
+        Me.lblLife.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1272, 693)
+        Me.Controls.Add(Me.lblSpecial)
+        Me.Controls.Add(Me.lblLife)
+        Me.Controls.Add(Me.lblTime)
+        Me.Controls.Add(Me.lblScore)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnDDrop)
         Me.Controls.Add(Me.btnShoot)
         Me.Controls.Add(Me.btnRight)
@@ -402,4 +494,12 @@ Partial Class Game
     Friend WithEvents btnDDrop As Button
     Friend WithEvents timDrop As Timer
     Friend WithEvents timProjectile As Timer
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents lblScore As Label
+    Friend WithEvents lblTime As Label
+    Friend WithEvents lblSpecial As Label
+    Friend WithEvents lblLife As Label
 End Class

@@ -10,3 +10,6 @@ X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletG
 X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.xml
 X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.pdb
 X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.Game.resources
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\bin\Debug\HighScores.mdf
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\bin\Debug\HighScores_log.ldf
+X:\Ahmed 117\Documents\School\IPFW\CS\VB\BulletGame\BulletGame\obj\Debug\BulletGame.HighScores.resources
