@@ -86,6 +86,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Piece.vb" />
     <Compile Include="Startup.vb">
       <SubType>Form</SubType>
     </Compile>

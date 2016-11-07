@@ -103,30 +103,32 @@
 
     Private Sub Drop()
 
-        'Drops everything down a line and adds a blank line to the top
-        'I'm pretty sure I can't simplify this further
-        lblPlayerRow.Text = lblRow0.Text
-        lblRow0.Text = lblRow1.Text
-        lblRow1.Text = lblRow2.Text
-        lblRow2.Text = lblRow3.Text
-        lblRow3.Text = lblRow4.Text
-        lblRow4.Text = lblRow5.Text
-        lblRow5.Text = lblRow6.Text
-        lblRow6.Text = lblRow7.Text
-        lblRow7.Text = lblRow8.Text
-        lblRow8.Text = lblRow9.Text
-        lblRow9.Text = lblRow10.Text
-        lblRow10.Text = lblRow11.Text
-        lblRow11.Text = lblRow12.Text
-        lblRow12.Text = lblRow13.Text
-        lblRow13.Text = lblRow14.Text
-        lblRow14.Text = lblRow15.Text
-        lblRow15.Text = lblRow16.Text
-        lblRow16.Text = lblTopRow.Text
-        lblTopRow.Text = BLANK_LINE
+        ''Drops everything down a line and adds a blank line to the top
+        ''I'm pretty sure I can't simplify this further
+        'lblPlayerRow.Text = lblRow0.Text
+        'lblRow0.Text = lblRow1.Text
+        'lblRow1.Text = lblRow2.Text
+        'lblRow2.Text = lblRow3.Text
+        'lblRow3.Text = lblRow4.Text
+        'lblRow4.Text = lblRow5.Text
+        'lblRow5.Text = lblRow6.Text
+        'lblRow6.Text = lblRow7.Text
+        'lblRow7.Text = lblRow8.Text
+        'lblRow8.Text = lblRow9.Text
+        'lblRow9.Text = lblRow10.Text
+        'lblRow10.Text = lblRow11.Text
+        'lblRow11.Text = lblRow12.Text
+        'lblRow12.Text = lblRow13.Text
+        'lblRow13.Text = lblRow14.Text
+        'lblRow14.Text = lblRow15.Text
+        'lblRow15.Text = lblRow16.Text
+        'lblRow16.Text = lblTopRow.Text
+        'lblTopRow.Text = BLANK_LINE
 
-        'Puts player back
-        UpdatePlayer()
+        ''Puts player back
+        'UpdatePlayer()
+
+
 
     End Sub
 
