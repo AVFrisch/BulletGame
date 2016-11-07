@@ -359,7 +359,7 @@ Partial Class Game
         'timDrop
         '
         Me.timDrop.Enabled = True
-        Me.timDrop.Interval = 250
+        Me.timDrop.Interval = 500
         '
         'timProjectile
         '

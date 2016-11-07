@@ -29,6 +29,7 @@
     Dim rowTop As Piece() = LoadBlank()
 
     'Player variables
+    Dim PC As New Player
     Private chrPlayer As Char = "X"c
     Private strPlayerLine As String
     Private intPlayerPos As Integer
@@ -111,6 +112,9 @@
         row16 = rowTop
         rowTop = LoadBlank()
 
+        'Puts player back
+        playerRow(intPlayerPos) = PC
+
     End Sub
 
     'Sets game refresh rate
@@ -130,9 +134,9 @@
         'unless the player is already at the furthest
         'left it can be
         If intPlayerPos > 0 Then
+            playerRow(intPlayerPos) = New Blank
             intPlayerPos -= 1
-            'Calls procedure to update player line
-            UpdatePlayer()
+            playerRow(intPlayerPos) = PC
         Else
             My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
         End If
@@ -145,9 +149,9 @@
         'unless the player is already at the furthest
         'right it can be
         If intPlayerPos < (15) Then
+            playerRow(intPlayerPos) = New Blank
             intPlayerPos += 1
-            'Calls procedure to update player line
-            UpdatePlayer()
+            playerRow(intPlayerPos) = PC
         Else
             My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
         End If
@@ -194,21 +198,21 @@
 
     Private Sub Shoot()
 
-        Dim strRow As String
+        'Dim strRow As String
 
 
-        'Controls shots from the player
-        lblRow0.Text = BulletTravel(lblRow0.Text)
-        lblRow1.Text = BulletTravel(lblRow1.Text)
-        lblRow2.Text = BulletTravel(lblRow2.Text)
-        lblRow3.Text = BulletTravel(lblRow3.Text)
-        lblRow4.Text = BulletTravel(lblRow4.Text)
-        lblRow5.Text = BulletTravel(lblRow5.Text)
+        ''Controls shots from the player
+        'lblRow0.Text = BulletTravel(lblRow0.Text)
+        'lblRow1.Text = BulletTravel(lblRow1.Text)
+        'lblRow2.Text = BulletTravel(lblRow2.Text)
+        'lblRow3.Text = BulletTravel(lblRow3.Text)
+        'lblRow4.Text = BulletTravel(lblRow4.Text)
+        'lblRow5.Text = BulletTravel(lblRow5.Text)
 
 
 
-        'Puts player back
-        UpdatePlayer()
+        ''Puts player back
+        'UpdatePlayer()
 
     End Sub
 
@@ -264,10 +268,10 @@
 
     Private Sub UpdatePlayer()
 
-        ''Prevents player from moving if game has stopped
-        'If blnStop Then
-        '    Return
-        'End If
+        'Prevents player from moving if game has stopped
+        If blnStop Then
+            Return
+        End If
 
         ''Saves the current Player line to a String
         'strPlayerLine = lblPlayerRow.Text
@@ -301,37 +305,36 @@
         'lblPlayerRow.Text = strPlayerLine
 
 
-
     End Sub
 
-    Private Function BulletTravel(ByVal strRow As String) As String
+    'Private Function BulletTravel(ByVal strRow As String) As String
 
-        Dim chrRow As Char() = strRow.ToCharArray
-        chrRow(intPlayerPos) = "|"
+    '    Dim chrRow As Char() = strRow.ToCharArray
+    '    chrRow(intPlayerPos) = "|"
 
-        Dim strNewRow As String = ""
+    '    Dim strNewRow As String = ""
 
-        For Each c In chrRow
-            strNewRow += c
-        Next
+    '    For Each c In chrRow
+    '        strNewRow += c
+    '    Next
 
-        Return strNewRow
+    '    Return strNewRow
 
-    End Function
+    'End Function
 
-    Private Function BulletFollow(ByVal strRow As String) As String
+    'Private Function BulletFollow(ByVal strRow As String) As String
 
-        Dim chrRow As Char() = strRow.ToCharArray
-        chrRow(intPlayerPos) = BG
+    '    Dim chrRow As Char() = strRow.ToCharArray
+    '    chrRow(intPlayerPos) = BG
 
-        Dim strNewRow As String = ""
+    '    Dim strNewRow As String = ""
 
-        For Each c In chrRow
-            strNewRow += c
-        Next
+    '    For Each c In chrRow
+    '        strNewRow += c
+    '    Next
 
-        Return strNewRow
+    '    Return strNewRow
 
-    End Function
+    'End Function
 
 End Class
