@@ -57,6 +57,7 @@ Partial Class Game
         Me.lblTime = New System.Windows.Forms.Label()
         Me.lblSpecial = New System.Windows.Forms.Label()
         Me.lblLife = New System.Windows.Forms.Label()
+        Me.timRefreshRate = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -358,6 +359,7 @@ Partial Class Game
         'timDrop
         '
         Me.timDrop.Enabled = True
+        Me.timDrop.Interval = 250
         '
         'timProjectile
         '
@@ -439,6 +441,11 @@ Partial Class Game
         Me.lblLife.TabIndex = 30
         Me.lblLife.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'timRefreshRate
+        '
+        Me.timRefreshRate.Enabled = True
+        Me.timRefreshRate.Interval = 33
+        '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 21.0!)
@@ -502,4 +509,5 @@ Partial Class Game
     Friend WithEvents lblTime As Label
     Friend WithEvents lblSpecial As Label
     Friend WithEvents lblLife As Label
+    Friend WithEvents timRefreshRate As Timer
 End Class

@@ -39,8 +39,13 @@ Partial Class GameSettings
         Me.btnScores = New System.Windows.Forms.Button()
         Me.chkAudio = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.rad60 = New System.Windows.Forms.RadioButton()
+        Me.rad30 = New System.Windows.Forms.RadioButton()
+        Me.rad15 = New System.Windows.Forms.RadioButton()
         Me.grpDiff.SuspendLayout()
         CType(Me.tkbSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -202,7 +207,7 @@ Partial Class GameSettings
         Me.chkAudio.AutoSize = True
         Me.chkAudio.Checked = True
         Me.chkAudio.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkAudio.Location = New System.Drawing.Point(108, 335)
+        Me.chkAudio.Location = New System.Drawing.Point(480, 348)
         Me.chkAudio.Name = "chkAudio"
         Me.chkAudio.Size = New System.Drawing.Size(76, 20)
         Me.chkAudio.TabIndex = 13
@@ -211,19 +216,62 @@ Partial Class GameSettings
         '
         'Label4
         '
-        Me.Label4.Enabled = False
-        Me.Label4.Location = New System.Drawing.Point(250, 335)
+        Me.Label4.Location = New System.Drawing.Point(41, 345)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(147, 43)
+        Me.Label4.Size = New System.Drawing.Size(147, 26)
         Me.Label4.TabIndex = 14
-        Me.Label4.Text = "Maybe more options later"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label4.Text = "Refresh Rate:"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.rad60)
+        Me.GroupBox1.Controls.Add(Me.rad30)
+        Me.GroupBox1.Controls.Add(Me.rad15)
+        Me.GroupBox1.Location = New System.Drawing.Point(197, 330)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(200, 47)
+        Me.GroupBox1.TabIndex = 8
+        Me.GroupBox1.TabStop = False
+        '
+        'rad60
+        '
+        Me.rad60.AutoSize = True
+        Me.rad60.Location = New System.Drawing.Point(125, 18)
+        Me.rad60.Name = "rad60"
+        Me.rad60.Size = New System.Drawing.Size(45, 20)
+        Me.rad60.TabIndex = 7
+        Me.rad60.Text = "60"
+        Me.rad60.UseVisualStyleBackColor = True
+        '
+        'rad30
+        '
+        Me.rad30.AutoSize = True
+        Me.rad30.Checked = True
+        Me.rad30.Location = New System.Drawing.Point(74, 18)
+        Me.rad30.Name = "rad30"
+        Me.rad30.Size = New System.Drawing.Size(45, 20)
+        Me.rad30.TabIndex = 6
+        Me.rad30.TabStop = True
+        Me.rad30.Text = "30"
+        Me.rad30.UseVisualStyleBackColor = True
+        '
+        'rad15
+        '
+        Me.rad15.AutoSize = True
+        Me.rad15.Location = New System.Drawing.Point(23, 18)
+        Me.rad15.Name = "rad15"
+        Me.rad15.Size = New System.Drawing.Size(45, 20)
+        Me.rad15.TabIndex = 5
+        Me.rad15.Text = "15"
+        Me.rad15.UseVisualStyleBackColor = True
         '
         'GameSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(594, 275)
+        Me.ClientSize = New System.Drawing.Size(594, 431)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.chkAudio)
         Me.Controls.Add(Me.btnScores)
@@ -246,6 +294,8 @@ Partial Class GameSettings
         Me.grpDiff.ResumeLayout(False)
         Me.grpDiff.PerformLayout()
         CType(Me.tkbSpeed, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -268,4 +318,8 @@ Partial Class GameSettings
     Friend WithEvents btnScores As Button
     Friend WithEvents chkAudio As CheckBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents rad60 As RadioButton
+    Friend WithEvents rad30 As RadioButton
+    Friend WithEvents rad15 As RadioButton
 End Class

@@ -1,6 +1,5 @@
-﻿Public Class Piece
+﻿Public MustInherit Class Piece
 
-    Private mChar As Char
-
+    MustOverride Property Sym As Char
 
 End Class
