@@ -8,30 +8,31 @@
     Private rand As New Random
 
     'Board Arrays
-    Dim playerRow As Char() = LoadBlank()
-    Dim row0 As Char() = LoadBlank()
-    Dim row1 As Char() = LoadBlank()
-    Dim row2 As Char() = LoadBlank()
-    Dim row3 As Char() = LoadBlank()
-    Dim row4 As Char() = LoadBlank()
-    Dim row5 As Char() = LoadBlank()
-    Dim row6 As Char() = LoadBlank()
-    Dim row7 As Char() = LoadBlank()
-    Dim row8 As Char() = LoadBlank()
-    Dim row9 As Char() = LoadBlank()
-    Dim row10 As Char() = LoadBlank()
-    Dim row11 As Char() = LoadBlank()
-    Dim row12 As Char() = LoadBlank()
-    Dim row13 As Char() = LoadBlank()
-    Dim row14 As Char() = LoadBlank()
-    Dim row15 As Char() = LoadBlank()
-    Dim row16 As Char() = LoadBlank()
-    Dim rowTop As Char() = LoadBlank()
+    Dim playerRow As Piece() = LoadBlank()
+    Dim row0 As Piece() = LoadBlank()
+    Dim row1 As Piece() = LoadBlank()
+    Dim row2 As Piece() = LoadBlank()
+    Dim row3 As Piece() = LoadBlank()
+    Dim row4 As Piece() = LoadBlank()
+    Dim row5 As Piece() = LoadBlank()
+    Dim row6 As Piece() = LoadBlank()
+    Dim row7 As Piece() = LoadBlank()
+    Dim row8 As Piece() = LoadBlank()
+    Dim row9 As Piece() = LoadBlank()
+    Dim row10 As Piece() = LoadBlank()
+    Dim row11 As Piece() = LoadBlank()
+    Dim row12 As Piece() = LoadBlank()
+    Dim row13 As Piece() = LoadBlank()
+    Dim row14 As Piece() = LoadBlank()
+    Dim row15 As Piece() = LoadBlank()
+    Dim row16 As Piece() = LoadBlank()
+    Dim rowTop As Piece() = LoadBlank()
 
     'Player variables
     Private chrPlayer As Char = "X"c
     Private strPlayerLine As String
     Private intPlayerPos As Integer
+
 
     '''''''''''''''
     'Debug buttons
@@ -60,7 +61,7 @@
         ''Updates next line with new String
         'lblTopRow.Text = strNextLine
 
-        rowTop(rand.Next(16)) = "+"c
+        rowTop(rand.Next(16)) = New Obstacle
 
     End Sub
 
@@ -89,6 +90,7 @@
     Private Sub timDrop_Tick(sender As Object, e As EventArgs) Handles timDrop.Tick
 
         'Sends all row arrays down one and generates a new blank for the top
+        'this doesn't actually solve any of the problems I had before yet
         playerRow = row0
         row0 = row1
         row1 = row2
@@ -210,12 +212,12 @@
 
     End Sub
 
-    Public Function LoadBlank() As Char()
+    Public Function LoadBlank() As Piece()
 
-        Dim blankRow(15) As Char
+        Dim blankRow(15) As Piece
 
         For i As Integer = 0 To 15 Step 1
-            blankRow(i) = BG
+            blankRow(i) = New Blank
         Next
 
         Return blankRow
@@ -246,13 +248,13 @@
 
     End Sub
 
-    Public Function LoadRow(ByVal pRow As Char()) As String
+    Public Function LoadRow(ByVal pRow As Piece()) As String
 
         Dim i As Integer = 0
         Dim strBuildRow As String = ""
 
         For Each piece In pRow
-            strBuildRow += pRow(i)
+            strBuildRow += pRow(i).Sym
             i += 1
         Next
 
