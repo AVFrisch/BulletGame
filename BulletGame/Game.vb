@@ -5,7 +5,8 @@
     Private blnStop As Boolean
     Private blnAudio As Boolean
     Private intRefresh As Integer
-    Private rand As New Random
+    Private placementRand As New Random
+    Private oddsRand As New Random
 
     'Board Arrays
     Dim playerRow As Piece() = LoadBlank()
@@ -62,7 +63,7 @@
         ''Updates next line with new String
         'lblTopRow.Text = strNextLine
 
-        rowTop(rand.Next(16)) = New Obstacle
+        rowTop(placementRand.Next(16)) = New Obstacle
 
     End Sub
 
@@ -90,26 +91,46 @@
     'Controls timed drops
     Private Sub timDrop_Tick(sender As Object, e As EventArgs) Handles timDrop.Tick
 
-        'Sends all row arrays down one and generates a new blank for the top
-        'this doesn't actually solve any of the problems I had before yet
-        playerRow = row0
-        row0 = row1
-        row1 = row2
-        row2 = row3
-        row3 = row4
-        row4 = row5
-        row5 = row6
-        row6 = row7
-        row7 = row8
-        row8 = row9
-        row9 = row10
-        row10 = row11
-        row11 = row12
-        row12 = row13
-        row13 = row14
-        row14 = row15
-        row15 = row16
-        row16 = rowTop
+        ''Sends all row arrays down one and generates a new blank for the top
+        ''this doesn't actually solve any of the problems I had before yet
+        'playerRow = row0
+        'row0 = row1
+        'row1 = row2
+        'row2 = row3
+        'row3 = row4
+        'row4 = row5
+        'row5 = row6
+        'row6 = row7
+        'row7 = row8
+        'row8 = row9
+        'row9 = row10
+        'row10 = row11
+        'row11 = row12
+        'row12 = row13
+        'row13 = row14
+        'row14 = row15
+        'row15 = row16
+        'row16 = rowTop
+        'rowTop = LoadBlank()
+
+        playerRow = DropNPCs(row0, playerRow)
+        row0 = DropNPCs(row1, row0)
+        row1 = DropNPCs(row2, row1)
+        row2 = DropNPCs(row3, row2)
+        row3 = DropNPCs(row4, row3)
+        row4 = DropNPCs(row5, row4)
+        row5 = DropNPCs(row6, row5)
+        row6 = DropNPCs(row7, row6)
+        row7 = DropNPCs(row8, row7)
+        row8 = DropNPCs(row9, row8)
+        row9 = DropNPCs(row10, row9)
+        row10 = DropNPCs(row11, row10)
+        row11 = DropNPCs(row12, row11)
+        row12 = DropNPCs(row13, row12)
+        row13 = DropNPCs(row14, row13)
+        row14 = DropNPCs(row15, row14)
+        row15 = DropNPCs(row16, row15)
+        row16 = DropNPCs(rowTop, row16)
         rowTop = LoadBlank()
 
         'Puts player back
@@ -121,6 +142,12 @@
     Private Sub timRefreshRate_Tick(sender As Object, e As EventArgs) Handles timRefreshRate.Tick
 
         UpdateBoard()
+
+        'Currently hardcoded 10% chance for obstacles to drop on their own
+        'every time the board is refreshed
+        If oddsRand.Next(100) < 10 Then
+            rowTop(placementRand.Next(16)) = New Obstacle
+        End If
 
     End Sub
 
@@ -164,6 +191,79 @@
 
     '''''''''''''''
     'Procedures
+    '''''''''''''''
+
+    Public Function DropNPCs(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
+
+        Dim i As Integer = 0
+
+        For Each thing As Piece In pRowTop
+
+            If TypeOf thing Is Obstacle Then
+                pRowBot(i) = pRowTop(i)
+            End If
+
+            i += 1
+        Next
+
+        Return pRowBot
+
+    End Function
+
+
+
+    Public Function LoadBlank() As Piece()
+
+        Dim blankRow(15) As Piece
+
+        For i As Integer = 0 To 15 Step 1
+            blankRow(i) = New Blank
+        Next
+
+        Return blankRow
+
+    End Function
+
+    Public Sub UpdateBoard()
+
+        lblTopRow.Text = LoadRow(rowTop)
+        lblRow0.Text = LoadRow(row0)
+        lblRow1.Text = LoadRow(row1)
+        lblRow2.Text = LoadRow(row2)
+        lblRow3.Text = LoadRow(row3)
+        lblRow4.Text = LoadRow(row4)
+        lblRow5.Text = LoadRow(row5)
+        lblRow6.Text = LoadRow(row6)
+        lblRow7.Text = LoadRow(row7)
+        lblRow8.Text = LoadRow(row8)
+        lblRow9.Text = LoadRow(row9)
+        lblRow10.Text = LoadRow(row10)
+        lblRow11.Text = LoadRow(row11)
+        lblRow12.Text = LoadRow(row12)
+        lblRow13.Text = LoadRow(row13)
+        lblRow14.Text = LoadRow(row14)
+        lblRow15.Text = LoadRow(row15)
+        lblRow16.Text = LoadRow(row16)
+        lblPlayerRow.Text = LoadRow(playerRow)
+
+    End Sub
+
+    Public Function LoadRow(ByVal pRow As Piece()) As String
+
+        Dim i As Integer = 0
+        Dim strBuildRow As String = ""
+
+        For Each piece In pRow
+            strBuildRow += pRow(i).Sym
+            i += 1
+        Next
+
+        Return strBuildRow
+
+    End Function
+
+    '''''''''''''''
+    'Potentially retired code
     '''''''''''''''
 
     Private Sub Drop()
@@ -216,62 +316,12 @@
 
     End Sub
 
-    Public Function LoadBlank() As Piece()
-
-        Dim blankRow(15) As Piece
-
-        For i As Integer = 0 To 15 Step 1
-            blankRow(i) = New Blank
-        Next
-
-        Return blankRow
-
-    End Function
-
-    Public Sub UpdateBoard()
-
-        lblTopRow.Text = LoadRow(rowTop)
-        lblRow0.Text = LoadRow(row0)
-        lblRow1.Text = LoadRow(row1)
-        lblRow2.Text = LoadRow(row2)
-        lblRow3.Text = LoadRow(row3)
-        lblRow4.Text = LoadRow(row4)
-        lblRow5.Text = LoadRow(row5)
-        lblRow6.Text = LoadRow(row6)
-        lblRow7.Text = LoadRow(row7)
-        lblRow8.Text = LoadRow(row8)
-        lblRow9.Text = LoadRow(row9)
-        lblRow10.Text = LoadRow(row10)
-        lblRow11.Text = LoadRow(row11)
-        lblRow12.Text = LoadRow(row12)
-        lblRow13.Text = LoadRow(row13)
-        lblRow14.Text = LoadRow(row14)
-        lblRow15.Text = LoadRow(row15)
-        lblRow16.Text = LoadRow(row16)
-        lblPlayerRow.Text = LoadRow(playerRow)
-
-    End Sub
-
-    Public Function LoadRow(ByVal pRow As Piece()) As String
-
-        Dim i As Integer = 0
-        Dim strBuildRow As String = ""
-
-        For Each piece In pRow
-            strBuildRow += pRow(i).Sym
-            i += 1
-        Next
-
-        Return strBuildRow
-
-    End Function
-
     Private Sub UpdatePlayer()
 
         'Prevents player from moving if game has stopped
-        If blnStop Then
-            Return
-        End If
+        'If blnStop Then
+        '    Return
+        'End If
 
         ''Saves the current Player line to a String
         'strPlayerLine = lblPlayerRow.Text
