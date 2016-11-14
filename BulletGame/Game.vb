@@ -113,24 +113,24 @@
         'row16 = rowTop
         'rowTop = LoadBlank()
 
-        playerRow = DropNPCs(row0, playerRow)
-        row0 = DropNPCs(row1, row0)
-        row1 = DropNPCs(row2, row1)
-        row2 = DropNPCs(row3, row2)
-        row3 = DropNPCs(row4, row3)
-        row4 = DropNPCs(row5, row4)
-        row5 = DropNPCs(row6, row5)
-        row6 = DropNPCs(row7, row6)
-        row7 = DropNPCs(row8, row7)
-        row8 = DropNPCs(row9, row8)
-        row9 = DropNPCs(row10, row9)
-        row10 = DropNPCs(row11, row10)
-        row11 = DropNPCs(row12, row11)
-        row12 = DropNPCs(row13, row12)
-        row13 = DropNPCs(row14, row13)
-        row14 = DropNPCs(row15, row14)
-        row15 = DropNPCs(row16, row15)
-        row16 = DropNPCs(rowTop, row16)
+        playerRow = Drop(row0, playerRow)
+        row0 = Drop(row1, row0)
+        row1 = Drop(row2, row1)
+        row2 = Drop(row3, row2)
+        row3 = Drop(row4, row3)
+        row4 = Drop(row5, row4)
+        row5 = Drop(row6, row5)
+        row6 = Drop(row7, row6)
+        row7 = Drop(row8, row7)
+        row8 = Drop(row9, row8)
+        row9 = Drop(row10, row9)
+        row10 = Drop(row11, row10)
+        row11 = Drop(row12, row11)
+        row12 = Drop(row13, row12)
+        row13 = Drop(row14, row13)
+        row14 = Drop(row15, row14)
+        row15 = Drop(row16, row15)
+        row16 = Drop(rowTop, row16)
         rowTop = LoadBlank()
 
         'Puts player back
@@ -193,13 +193,15 @@
     'Procedures
     '''''''''''''''
 
-    Public Function DropNPCs(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
+    Public Function Drop(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
 
         Dim i As Integer = 0
 
         For Each thing As Piece In pRowTop
 
-            If TypeOf thing Is Obstacle Then
+            'The idea here is blanks and obstacles will drop as normal but
+            'bullet objects are unaffected
+            If TypeOf thing Is Obstacle Or TypeOf thing Is Blank Then
                 pRowBot(i) = pRowTop(i)
             End If
 
@@ -266,7 +268,7 @@
     'Potentially retired code
     '''''''''''''''
 
-    Private Sub Drop()
+    Private Sub OldDrop()
 
         ''Drops everything down a line and adds a blank line to the top
         ''I'm pretty sure I can't simplify this further
