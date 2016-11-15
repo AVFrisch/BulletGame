@@ -8,6 +8,13 @@
     Private placementRand As New Random
     Private oddsRand As New Random
 
+    'Startup Settings Variables
+    Public Shared chrPlayer As Char = "X"c
+    Public strDifficulty As String = "Hard"
+    Public intGameSpeed As Integer = 10
+    Public intRefreshRate As Integer = 30
+
+
     'Board Arrays
     Dim playerRow As Piece() = LoadBlank()
     Dim row0 As Piece() = LoadBlank()
@@ -31,7 +38,6 @@
 
     'Player variables
     Dim PC As New Player
-    Private chrPlayer As Char = "X"c
     Private strPlayerLine As String
     Private intPlayerPos As Integer
 
@@ -113,6 +119,7 @@
         'row16 = rowTop
         'rowTop = LoadBlank()
 
+        'ok but now this one does
         playerRow = Drop(row0, playerRow)
         row0 = Drop(row1, row0)
         row1 = Drop(row2, row1)
@@ -131,10 +138,37 @@
         row14 = Drop(row15, row14)
         row15 = Drop(row16, row15)
         row16 = Drop(rowTop, row16)
-        rowTop = LoadBlank()
+        rowTop = LoadTop()
 
         'Puts player back
         playerRow(intPlayerPos) = PC
+
+    End Sub
+
+    'Timer for projectiles
+    Private Sub timProjectile_Tick(sender As Object, e As EventArgs) Handles timProjectile.Tick
+
+
+        ' rowTop = LoadBlank()
+        row16 = Raise(rowTop, row16)
+        row15 = Raise(row16, row15)
+        row14 = Raise(row15, row14)
+        row13 = Raise(row14, row13)
+        row12 = Raise(row13, row12)
+        row11 = Raise(row12, row11)
+        row10 = Raise(row11, row10)
+        row9 = Raise(row10, row9)
+        row8 = Raise(row9, row8)
+        row7 = Raise(row8, row7)
+        row6 = Raise(row7, row6)
+        row5 = Raise(row6, row5)
+        row4 = Raise(row5, row4)
+        row3 = Raise(row4, row3)
+        row2 = Raise(row3, row2)
+        row1 = Raise(row2, row1)
+        row0 = Raise(row1, row0)
+        'playerRow = Raise(row0, playerRow)
+
 
     End Sub
 
@@ -145,9 +179,9 @@
 
         'Currently hardcoded 10% chance for obstacles to drop on their own
         'every time the board is refreshed
-        If oddsRand.Next(100) < 10 Then
-            rowTop(placementRand.Next(16)) = New Obstacle
-        End If
+        'If oddsRand.Next(100) < 10 Then
+        '    rowTop(placementRand.Next(16)) = New Obstacle
+        'End If
 
     End Sub
 
@@ -186,11 +220,13 @@
     End Sub
 
     Private Sub btnShoot_Click(sender As Object, e As EventArgs) Handles btnShoot.Click
-        Shoot()
+
+        row0(intPlayerPos) = New Bullet
+
     End Sub
 
     '''''''''''''''
-    'Procedures
+    'Procedures and Functions
     '''''''''''''''
 
     Public Function Drop(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
@@ -203,6 +239,28 @@
             'bullet objects are unaffected
             If TypeOf thing Is Obstacle Or TypeOf thing Is Blank Then
                 pRowBot(i) = pRowTop(i)
+            ElseIf TypeOf thing Is Bullet Then
+                pRowBot(i) = pRowTop(i)
+            End If
+
+            i += 1
+        Next
+
+        Return pRowBot
+
+    End Function
+
+    Public Function Raise(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
+
+        Dim i As Integer = 0
+
+        For Each thing As Piece In pRowBot
+
+            If TypeOf pRowTop(i) Is Obstacle Then
+                'hit detection here
+            ElseIf TypeOf thing Is Bullet Then
+                pRowTop(i) = pRowBot(i)
+                pRowBot(i) = New Blank
             End If
 
             i += 1
@@ -223,6 +281,34 @@
         Next
 
         Return blankRow
+
+    End Function
+
+    Public Function LoadTop() As Piece()
+
+        Dim topRow(15) As Piece
+
+        For i As Integer = 0 To 15 Step 1
+            topRow(i) = New Blank
+        Next
+
+        Select Case strDifficulty
+            Case "Easy"
+                topRow(placementRand.Next(16)) = New Obstacle
+
+            Case "Medium"
+                topRow(placementRand.Next(16)) = New Obstacle
+                topRow(placementRand.Next(16)) = New Obstacle
+
+            Case "Hard"
+                topRow(placementRand.Next(16)) = New Obstacle
+                topRow(placementRand.Next(16)) = New Obstacle
+                topRow(placementRand.Next(16)) = New Obstacle
+
+        End Select
+
+
+        Return topRow
 
     End Function
 
