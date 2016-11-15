@@ -119,6 +119,11 @@
         'row16 = rowTop
         'rowTop = LoadBlank()
 
+        'Memory management
+        For Each thing As Piece In playerRow
+            thing = Nothing
+        Next
+
         'ok but now this one does
         playerRow = Drop(row0, playerRow)
         row0 = Drop(row1, row0)
@@ -148,8 +153,7 @@
     'Timer for projectiles
     Private Sub timProjectile_Tick(sender As Object, e As EventArgs) Handles timProjectile.Tick
 
-
-        ' rowTop = LoadBlank()
+        'Moves the bullets up
         row16 = Raise(rowTop, row16)
         row15 = Raise(row16, row15)
         row14 = Raise(row15, row14)
@@ -169,6 +173,14 @@
         row0 = Raise(row1, row0)
         'playerRow = Raise(row0, playerRow)
 
+        'Removes bullets that reach the top
+        For Each thing In rowTop
+            If TypeOf thing Is Bullet Then
+                thing = New Blank
+            End If
+        Next
+
+
 
     End Sub
 
@@ -177,8 +189,8 @@
 
         UpdateBoard()
 
-        'Currently hardcoded 10% chance for obstacles to drop on their own
-        'every time the board is refreshed
+        ''Currently hardcoded 10% chance for obstacles to drop on their own
+        ''every time the board is refreshed
         'If oddsRand.Next(100) < 10 Then
         '    rowTop(placementRand.Next(16)) = New Obstacle
         'End If
@@ -237,7 +249,10 @@
 
             'The idea here is blanks and obstacles will drop as normal but
             'bullet objects are unaffected
-            If TypeOf thing Is Obstacle Or TypeOf thing Is Blank Then
+            If TypeOf thing Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
+                pRowBot(i) = New Blank
+                pRowTop(i) = pRowBot(i)
+            ElseIf TypeOf thing Is Obstacle Or TypeOf thing Is Blank Then
                 pRowBot(i) = pRowTop(i)
             ElseIf TypeOf thing Is Bullet Then
                 pRowBot(i) = pRowTop(i)
@@ -256,8 +271,10 @@
 
         For Each thing As Piece In pRowBot
 
-            If TypeOf pRowTop(i) Is Obstacle Then
+            If TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
                 'hit detection here
+                pRowTop(i) = New Blank
+                pRowBot(i) = pRowTop(i)
             ElseIf TypeOf thing Is Bullet Then
                 pRowTop(i) = pRowBot(i)
                 pRowBot(i) = New Blank

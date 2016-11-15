@@ -1,7 +1,7 @@
 ﻿Public Class Bullet
     Inherits Piece
 
-    Overrides Property Sym As Char = "O"c
+    Overrides Property Sym As Char = "^"c
 
     'idk figure it out
 

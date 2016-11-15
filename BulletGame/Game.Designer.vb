@@ -69,7 +69,7 @@ Partial Class Game
         Me.lblRow3.ForeColor = System.Drawing.Color.LightGray
         Me.lblRow3.Location = New System.Drawing.Point(50, 479)
         Me.lblRow3.Name = "lblRow3"
-        Me.lblRow3.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow3.Size = New System.Drawing.Size(401, 40)
         Me.lblRow3.TabIndex = 0
         Me.lblRow3.Text = "················"
         '
@@ -81,7 +81,7 @@ Partial Class Game
         Me.lblRow4.ForeColor = System.Drawing.Color.LightGray
         Me.lblRow4.Location = New System.Drawing.Point(50, 447)
         Me.lblRow4.Name = "lblRow4"
-        Me.lblRow4.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow4.Size = New System.Drawing.Size(401, 40)
         Me.lblRow4.TabIndex = 1
         Me.lblRow4.Text = "················"
         '
@@ -93,7 +93,7 @@ Partial Class Game
         Me.lblRow5.ForeColor = System.Drawing.Color.LightGray
         Me.lblRow5.Location = New System.Drawing.Point(50, 415)
         Me.lblRow5.Name = "lblRow5"
-        Me.lblRow5.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow5.Size = New System.Drawing.Size(401, 40)
         Me.lblRow5.TabIndex = 2
         Me.lblRow5.Text = "················"
         '
@@ -105,7 +105,7 @@ Partial Class Game
         Me.lblRow6.ForeColor = System.Drawing.Color.Silver
         Me.lblRow6.Location = New System.Drawing.Point(50, 383)
         Me.lblRow6.Name = "lblRow6"
-        Me.lblRow6.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow6.Size = New System.Drawing.Size(401, 40)
         Me.lblRow6.TabIndex = 3
         Me.lblRow6.Text = "················"
         '
@@ -117,7 +117,7 @@ Partial Class Game
         Me.lblRow7.ForeColor = System.Drawing.Color.Silver
         Me.lblRow7.Location = New System.Drawing.Point(50, 351)
         Me.lblRow7.Name = "lblRow7"
-        Me.lblRow7.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow7.Size = New System.Drawing.Size(401, 40)
         Me.lblRow7.TabIndex = 4
         Me.lblRow7.Text = "················"
         '
@@ -129,7 +129,7 @@ Partial Class Game
         Me.lblRow12.ForeColor = System.Drawing.Color.Gray
         Me.lblRow12.Location = New System.Drawing.Point(50, 191)
         Me.lblRow12.Name = "lblRow12"
-        Me.lblRow12.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow12.Size = New System.Drawing.Size(401, 40)
         Me.lblRow12.TabIndex = 9
         Me.lblRow12.Text = "················"
         '
@@ -141,7 +141,7 @@ Partial Class Game
         Me.lblRow11.ForeColor = System.Drawing.Color.DarkGray
         Me.lblRow11.Location = New System.Drawing.Point(50, 223)
         Me.lblRow11.Name = "lblRow11"
-        Me.lblRow11.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow11.Size = New System.Drawing.Size(401, 40)
         Me.lblRow11.TabIndex = 8
         Me.lblRow11.Text = "················"
         '
@@ -153,7 +153,7 @@ Partial Class Game
         Me.lblRow10.ForeColor = System.Drawing.Color.DarkGray
         Me.lblRow10.Location = New System.Drawing.Point(50, 255)
         Me.lblRow10.Name = "lblRow10"
-        Me.lblRow10.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow10.Size = New System.Drawing.Size(401, 40)
         Me.lblRow10.TabIndex = 7
         Me.lblRow10.Text = "················"
         '
@@ -165,7 +165,7 @@ Partial Class Game
         Me.lblRow9.ForeColor = System.Drawing.Color.DarkGray
         Me.lblRow9.Location = New System.Drawing.Point(50, 287)
         Me.lblRow9.Name = "lblRow9"
-        Me.lblRow9.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow9.Size = New System.Drawing.Size(401, 40)
         Me.lblRow9.TabIndex = 6
         Me.lblRow9.Text = "················"
         '
@@ -177,7 +177,7 @@ Partial Class Game
         Me.lblRow8.ForeColor = System.Drawing.Color.Silver
         Me.lblRow8.Location = New System.Drawing.Point(50, 319)
         Me.lblRow8.Name = "lblRow8"
-        Me.lblRow8.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow8.Size = New System.Drawing.Size(401, 40)
         Me.lblRow8.TabIndex = 5
         Me.lblRow8.Text = "················"
         '
@@ -189,7 +189,7 @@ Partial Class Game
         Me.lblTopRow.ForeColor = System.Drawing.Color.DimGray
         Me.lblTopRow.Location = New System.Drawing.Point(50, 31)
         Me.lblTopRow.Name = "lblTopRow"
-        Me.lblTopRow.Size = New System.Drawing.Size(319, 32)
+        Me.lblTopRow.Size = New System.Drawing.Size(401, 40)
         Me.lblTopRow.TabIndex = 14
         Me.lblTopRow.Text = "················"
         '
@@ -201,7 +201,7 @@ Partial Class Game
         Me.lblRow16.ForeColor = System.Drawing.Color.DimGray
         Me.lblRow16.Location = New System.Drawing.Point(50, 63)
         Me.lblRow16.Name = "lblRow16"
-        Me.lblRow16.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow16.Size = New System.Drawing.Size(401, 40)
         Me.lblRow16.TabIndex = 13
         Me.lblRow16.Text = "················"
         '
@@ -213,7 +213,7 @@ Partial Class Game
         Me.lblRow15.ForeColor = System.Drawing.Color.DimGray
         Me.lblRow15.Location = New System.Drawing.Point(50, 95)
         Me.lblRow15.Name = "lblRow15"
-        Me.lblRow15.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow15.Size = New System.Drawing.Size(401, 40)
         Me.lblRow15.TabIndex = 12
         Me.lblRow15.Text = "················"
         '
@@ -225,7 +225,7 @@ Partial Class Game
         Me.lblRow14.ForeColor = System.Drawing.Color.Gray
         Me.lblRow14.Location = New System.Drawing.Point(50, 127)
         Me.lblRow14.Name = "lblRow14"
-        Me.lblRow14.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow14.Size = New System.Drawing.Size(401, 40)
         Me.lblRow14.TabIndex = 11
         Me.lblRow14.Text = "················"
         '
@@ -237,7 +237,7 @@ Partial Class Game
         Me.lblRow13.ForeColor = System.Drawing.Color.Gray
         Me.lblRow13.Location = New System.Drawing.Point(50, 159)
         Me.lblRow13.Name = "lblRow13"
-        Me.lblRow13.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow13.Size = New System.Drawing.Size(401, 40)
         Me.lblRow13.TabIndex = 10
         Me.lblRow13.Text = "················"
         '
@@ -249,7 +249,7 @@ Partial Class Game
         Me.lblRow2.ForeColor = System.Drawing.Color.Gainsboro
         Me.lblRow2.Location = New System.Drawing.Point(50, 511)
         Me.lblRow2.Name = "lblRow2"
-        Me.lblRow2.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow2.Size = New System.Drawing.Size(401, 40)
         Me.lblRow2.TabIndex = 18
         Me.lblRow2.Text = "················"
         '
@@ -261,7 +261,7 @@ Partial Class Game
         Me.lblRow1.ForeColor = System.Drawing.Color.Gainsboro
         Me.lblRow1.Location = New System.Drawing.Point(50, 543)
         Me.lblRow1.Name = "lblRow1"
-        Me.lblRow1.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow1.Size = New System.Drawing.Size(401, 40)
         Me.lblRow1.TabIndex = 17
         Me.lblRow1.Text = "················"
         '
@@ -273,7 +273,7 @@ Partial Class Game
         Me.lblRow0.ForeColor = System.Drawing.Color.Gainsboro
         Me.lblRow0.Location = New System.Drawing.Point(50, 575)
         Me.lblRow0.Name = "lblRow0"
-        Me.lblRow0.Size = New System.Drawing.Size(319, 32)
+        Me.lblRow0.Size = New System.Drawing.Size(401, 40)
         Me.lblRow0.TabIndex = 16
         Me.lblRow0.Text = "················"
         '
@@ -285,7 +285,7 @@ Partial Class Game
         Me.lblPlayerRow.ForeColor = System.Drawing.SystemColors.Highlight
         Me.lblPlayerRow.Location = New System.Drawing.Point(50, 607)
         Me.lblPlayerRow.Name = "lblPlayerRow"
-        Me.lblPlayerRow.Size = New System.Drawing.Size(319, 32)
+        Me.lblPlayerRow.Size = New System.Drawing.Size(401, 40)
         Me.lblPlayerRow.TabIndex = 15
         Me.lblPlayerRow.Text = "················"
         '
@@ -364,6 +364,7 @@ Partial Class Game
         'timProjectile
         '
         Me.timProjectile.Enabled = True
+        Me.timProjectile.Interval = 50
         '
         'Label1
         '
@@ -448,7 +449,7 @@ Partial Class Game
         '
         'Game
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 21.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 26.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1272, 693)
         Me.Controls.Add(Me.lblSpecial)
