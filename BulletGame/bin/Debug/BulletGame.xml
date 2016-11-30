@@ -22,5 +22,70 @@ BulletGame
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:BulletGame.HighScoresDataSet">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSet.HighScoresDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSet.HighScoresRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSet.HighScoresRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSetTableAdapters.HighScoresTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(BulletGame.HighScoresDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(BulletGame.HighScoresDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(BulletGame.HighScoresDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.UpdateAll(BulletGame.HighScoresDataSet)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:BulletGame.HighScoresDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
 </members>
 </doc>

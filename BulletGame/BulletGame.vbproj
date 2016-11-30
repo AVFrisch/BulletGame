@@ -88,6 +88,11 @@
   <ItemGroup>
     <Compile Include="Blank.vb" />
     <Compile Include="Bullet.vb" />
+    <Compile Include="HighScoresDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HighScoresDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Obstacle.vb" />
     <Compile Include="Piece.vb" />
     <Compile Include="Player.vb" />
@@ -144,6 +149,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="HighScoresDataSet.xsc">
+      <DependentUpon>HighScoresDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="HighScoresDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HighScoresDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HighScoresDataSet.xss">
+      <DependentUpon>HighScoresDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

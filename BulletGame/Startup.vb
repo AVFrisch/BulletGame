@@ -47,4 +47,10 @@
 
     End Sub
 
+    Private Sub GameSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        cboCharacter.SelectedIndex = 0
+
+    End Sub
+
 End Class

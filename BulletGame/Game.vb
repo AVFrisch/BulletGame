@@ -5,11 +5,13 @@
     Private blnStop As Boolean
     Private blnAudio As Boolean
     Private intRefresh As Integer
+    Dim intScore As Integer = 0
     Private placementRand As New Random
     Private oddsRand As New Random
 
+
     'Startup Settings Variables
-    Public Shared chrPlayer As Char = "X"c
+    Public Shared chrPlayer As Char =
     Public strDifficulty As String = "Hard"
     Public intGameSpeed As Integer = 10
     Public intRefreshRate As Integer = 30
