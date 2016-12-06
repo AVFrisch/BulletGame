@@ -55,12 +55,12 @@ Partial Class GameSettings
         Me.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lblTitle.Font = New System.Drawing.Font("Lucida Console", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.Location = New System.Drawing.Point(118, 9)
+        Me.lblTitle.Location = New System.Drawing.Point(197, 9)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(451, 42)
+        Me.lblTitle.Size = New System.Drawing.Size(283, 42)
         Me.lblTitle.TabIndex = 0
-        Me.lblTitle.Text = "Working Title Game"
+        Me.lblTitle.Text = "Bullet Game"
         '
         'cboCharacter
         '

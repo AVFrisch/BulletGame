@@ -12,15 +12,17 @@
 
     End Sub
 
-    Public Sub Hit(ByVal pDamage As Integer)
+    Public Function Hit(ByVal pDamage As Integer) As Boolean
 
         Health -= pDamage
 
         If Health <= 0 Then
-            'make ded
+            Return 1
         End If
 
-    End Sub
+        Return 0
+
+    End Function
 
 
 

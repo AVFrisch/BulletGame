@@ -1,20 +1,20 @@
 ﻿Public Class Game
 
     'General Variables
-    Private Const BG As Char = "·"c
-    Private blnStop As Boolean
-    Private blnAudio As Boolean
-    Private intRefresh As Integer
+    Dim blnStop As Boolean = 0
     Dim intScore As Integer = 0
+    Dim dblTime As Double = 0
+    Dim intHitCount As Integer = 0
+    Dim intGrabCount As Integer = 0
     Private placementRand As New Random
     Private oddsRand As New Random
 
 
     'Startup Settings Variables
-    Public Shared chrPlayer As Char =
-    Public strDifficulty As String = "Hard"
-    Public intGameSpeed As Integer = 10
-    Public intRefreshRate As Integer = 30
+    'Public chrPlayer As Char = Settings.chrPlayer
+    'Public strDifficulty As String = Settings.strDifficulty
+    'Public intGameSpeed As Integer = Settings.intGameSpeed
+    'Public intRefreshRate As Integer = Settings.intRefresh
 
 
     'Board Arrays
@@ -82,6 +82,7 @@
     'Form Load
     Private Sub Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'Sets game refresh rate
         Select Case intRefresh
             Case 15
                 timRefreshRate.Interval = 67
@@ -91,8 +92,22 @@
                 timRefreshRate.Interval = 17
         End Select
 
+        'Sets game speed
+        timDrop.Interval = CInt(1000 / Settings.intGameSpeed)
+
         intPlayerPos = 8
         UpdatePlayer()
+
+    End Sub
+
+    '''''''''''''''
+    'Timers
+    '''''''''''''''
+
+    'Records game time
+    Private Sub timGame_Tick(sender As Object, e As EventArgs) Handles timGame.Tick
+
+        dblTime += 0.25
 
     End Sub
 
@@ -190,6 +205,10 @@
     Private Sub timRefreshRate_Tick(sender As Object, e As EventArgs) Handles timRefreshRate.Tick
 
         UpdateBoard()
+        CalcScore()
+
+        lblTime.Text = dblTime.ToString("N2")
+        lblScore.Text = intScore
 
         ''Currently hardcoded 10% chance for obstacles to drop on their own
         ''every time the board is refreshed
@@ -235,7 +254,12 @@
 
     Private Sub btnShoot_Click(sender As Object, e As EventArgs) Handles btnShoot.Click
 
-        row0(intPlayerPos) = New Bullet
+        If chrPlayer = "X"c Or chrPlayer = "O"c Then
+            row0(intPlayerPos) = New Pew
+        ElseIf chrPlayer = "V"c Then
+            row0(intPlayerPos) = New Pow
+        End If
+
 
     End Sub
 
@@ -252,8 +276,16 @@
             'The idea here is blanks and obstacles will drop as normal but
             'bullet objects are unaffected
             If TypeOf thing Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
+
+                If CType(thing, Obstacle).Hit(CType(pRowBot(i), Bullet).Damage = 1) Then
+                    pRowTop(i) = New Blank
+                    intHitCount += 1
+                Else
+
+                End If
+
                 pRowBot(i) = New Blank
-                pRowTop(i) = pRowBot(i)
+
             ElseIf TypeOf thing Is Obstacle Or TypeOf thing Is Blank Then
                 pRowBot(i) = pRowTop(i)
             ElseIf TypeOf thing Is Bullet Then
@@ -273,10 +305,17 @@
 
         For Each thing As Piece In pRowBot
 
-            If TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
-                'hit detection here
-                pRowTop(i) = New Blank
-                pRowBot(i) = pRowTop(i)
+            If TypeOf pRowTop(i) Is Obstacle And TypeOf thing Is Bullet Then
+
+                If CType(pRowTop(i), Obstacle).Hit(CType(thing, Bullet).Damage = 1) Then
+                    pRowTop(i) = New Blank
+                    intHitCount += 1
+                Else
+
+                End If
+
+                thing = New Blank
+
             ElseIf TypeOf thing Is Bullet Then
                 pRowTop(i) = pRowBot(i)
                 pRowBot(i) = New Blank
@@ -368,6 +407,21 @@
         Return strBuildRow
 
     End Function
+
+    Private Sub CalcScore()
+
+
+
+    End Sub
+
+    Private Sub ResetGame()
+
+        intScore = 0
+        dblTime = 0
+        intHitCount = 0
+        intGrabCount = 0
+
+    End Sub
 
     '''''''''''''''
     'Potentially retired code
@@ -463,6 +517,7 @@
 
 
     End Sub
+
 
     'Private Function BulletTravel(ByVal strRow As String) As String
 

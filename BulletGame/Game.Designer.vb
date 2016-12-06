@@ -58,6 +58,7 @@ Partial Class Game
         Me.lblSpecial = New System.Windows.Forms.Label()
         Me.lblLife = New System.Windows.Forms.Label()
         Me.timRefreshRate = New System.Windows.Forms.Timer(Me.components)
+        Me.timGame = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -447,6 +448,11 @@ Partial Class Game
         Me.timRefreshRate.Enabled = True
         Me.timRefreshRate.Interval = 33
         '
+        'timGame
+        '
+        Me.timGame.Enabled = True
+        Me.timGame.Interval = 250
+        '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 26.0!)
@@ -511,4 +517,5 @@ Partial Class Game
     Friend WithEvents lblSpecial As Label
     Friend WithEvents lblLife As Label
     Friend WithEvents timRefreshRate As Timer
+    Friend WithEvents timGame As Timer
 End Class

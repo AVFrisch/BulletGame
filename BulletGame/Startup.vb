@@ -2,6 +2,40 @@
 
     Private Sub btnStart_Click(sender As Object, e As EventArgs) Handles btnStart.Click
 
+        Settings.chrPlayer = CChar(lblChar.Text)
+
+        Select Case True
+            Case radEasy.Checked
+                Settings.strDifficulty = "Easy"
+            Case radMed.Checked
+                Settings.strDifficulty = "Medium"
+            Case radHard.Checked
+                Settings.strDifficulty = "Hard"
+        End Select
+
+        Settings.intGameSpeed = tkbSpeed.Value
+
+        Select Case True
+            Case rad15.Checked
+                Settings.intRefresh = 15
+            Case rad30.Checked
+                Settings.intRefresh = 30
+            Case rad60.Checked
+                Settings.intRefresh = 60
+        End Select
+
+        If chkAudio.Checked Then
+            Settings.blnAudio = 1
+        Else
+            Settings.blnAudio = 0
+        End If
+
+        If chkGrid.Checked Then
+            Settings.chrGrid = "·"c
+        Else
+            Settings.chrGrid = " "c
+        End If
+
         Game.ShowDialog()
 
     End Sub

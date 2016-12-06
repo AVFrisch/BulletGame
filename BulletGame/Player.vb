@@ -1,6 +1,6 @@
 ﻿Public Class Player
     Inherits Piece
 
-    Overrides Property Sym As Char = Game.chrPlayer
+    Overrides Property Sym As Char = Settings.chrPlayer
 
 End Class
