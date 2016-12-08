@@ -48,7 +48,7 @@
     'Debug buttons
     'all debug buttons use comic sans
     '''''''''''''''
-    Private Sub btnDDrop_Click(sender As Object, e As EventArgs) Handles btnDDrop.Click
+    Private Sub btnDDrop_Click(sender As Object, e As EventArgs)
 
         ''New Line Generation
         ''Saves current line in case elements already exist on the line
@@ -81,6 +81,8 @@
 
     'Form Load
     Private Sub Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        ResetGame()
 
         'Sets game refresh rate
         Select Case intRefresh
@@ -170,6 +172,13 @@
     'Timer for projectiles
     Private Sub timProjectile_Tick(sender As Object, e As EventArgs) Handles timProjectile.Tick
 
+
+        For Each thing In rowTop
+            If TypeOf thing Is Bullet Then
+                thing = Nothing
+            End If
+        Next
+
         'Moves the bullets up
         row16 = Raise(rowTop, row16)
         row15 = Raise(row16, row15)
@@ -193,7 +202,7 @@
         'Removes bullets that reach the top
         For Each thing In rowTop
             If TypeOf thing Is Bullet Then
-                thing = New Blank
+                thing = Nothing
             End If
         Next
 
@@ -273,23 +282,10 @@
 
         For Each thing As Piece In pRowTop
 
-            'The idea here is blanks and obstacles will drop as normal but
-            'bullet objects are unaffected
-            If TypeOf thing Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
+            If TypeOf (thing) IsNot Bullet And TypeOf (pRowBot(i)) IsNot Bullet Then
 
-                If CType(thing, Obstacle).Hit(CType(pRowBot(i), Bullet).Damage = 1) Then
-                    pRowTop(i) = New Blank
-                    intHitCount += 1
-                Else
+                pRowBot(i) = thing
 
-                End If
-
-                pRowBot(i) = New Blank
-
-            ElseIf TypeOf thing Is Obstacle Or TypeOf thing Is Blank Then
-                pRowBot(i) = pRowTop(i)
-            ElseIf TypeOf thing Is Bullet Then
-                pRowBot(i) = pRowTop(i)
             End If
 
             i += 1
@@ -307,14 +303,7 @@
 
             If TypeOf pRowTop(i) Is Obstacle And TypeOf thing Is Bullet Then
 
-                If CType(pRowTop(i), Obstacle).Hit(CType(thing, Bullet).Damage = 1) Then
-                    pRowTop(i) = New Blank
-                    intHitCount += 1
-                Else
-
-                End If
-
-                thing = New Blank
+                HitDetect(thing, pRowTop(i))
 
             ElseIf TypeOf thing Is Bullet Then
                 pRowTop(i) = pRowBot(i)
@@ -328,7 +317,22 @@
 
     End Function
 
+    Public Sub HitDetect(ByRef bottom As Piece, ByRef top As Piece)
 
+        If CType(top, Obstacle).Hit(CType(bottom, Bullet).Damage) Then
+
+            top = New Blank
+            bottom = New Blank
+            lblDebug.Text = "kill!"
+
+        Else
+
+            bottom = New Blank
+            lblDebug.Text = "Hit!"
+
+        End If
+
+    End Sub
 
     Public Function LoadBlank() As Piece()
 

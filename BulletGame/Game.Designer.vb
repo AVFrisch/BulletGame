@@ -46,7 +46,6 @@ Partial Class Game
         Me.btnLeft = New System.Windows.Forms.Button()
         Me.btnRight = New System.Windows.Forms.Button()
         Me.btnShoot = New System.Windows.Forms.Button()
-        Me.btnDDrop = New System.Windows.Forms.Button()
         Me.timDrop = New System.Windows.Forms.Timer(Me.components)
         Me.timProjectile = New System.Windows.Forms.Timer(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
@@ -59,6 +58,7 @@ Partial Class Game
         Me.lblLife = New System.Windows.Forms.Label()
         Me.timRefreshRate = New System.Windows.Forms.Timer(Me.components)
         Me.timGame = New System.Windows.Forms.Timer(Me.components)
+        Me.lblDebug = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -347,16 +347,6 @@ Partial Class Game
         Me.btnShoot.Text = "SH&OOT!"
         Me.btnShoot.UseVisualStyleBackColor = True
         '
-        'btnDDrop
-        '
-        Me.btnDDrop.Font = New System.Drawing.Font("Comic Sans MS", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDDrop.Location = New System.Drawing.Point(962, 255)
-        Me.btnDDrop.Name = "btnDDrop"
-        Me.btnDDrop.Size = New System.Drawing.Size(153, 121)
-        Me.btnDDrop.TabIndex = 23
-        Me.btnDDrop.Text = "D&rop"
-        Me.btnDDrop.UseVisualStyleBackColor = True
-        '
         'timDrop
         '
         Me.timDrop.Enabled = True
@@ -453,11 +443,21 @@ Partial Class Game
         Me.timGame.Enabled = True
         Me.timGame.Interval = 250
         '
+        'lblDebug
+        '
+        Me.lblDebug.Font = New System.Drawing.Font("Comic Sans MS", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDebug.Location = New System.Drawing.Point(884, 248)
+        Me.lblDebug.Name = "lblDebug"
+        Me.lblDebug.Size = New System.Drawing.Size(310, 91)
+        Me.lblDebug.TabIndex = 32
+        Me.lblDebug.Text = "Label5"
+        '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 26.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1272, 693)
+        Me.Controls.Add(Me.lblDebug)
         Me.Controls.Add(Me.lblSpecial)
         Me.Controls.Add(Me.lblLife)
         Me.Controls.Add(Me.lblTime)
@@ -466,7 +466,6 @@ Partial Class Game
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.btnDDrop)
         Me.Controls.Add(Me.btnShoot)
         Me.Controls.Add(Me.btnRight)
         Me.Controls.Add(Me.btnLeft)
@@ -505,7 +504,6 @@ Partial Class Game
     Friend WithEvents btnLeft As Button
     Friend WithEvents btnRight As Button
     Friend WithEvents btnShoot As Button
-    Friend WithEvents btnDDrop As Button
     Friend WithEvents timDrop As Timer
     Friend WithEvents timProjectile As Timer
     Friend WithEvents Label1 As Label
@@ -518,4 +516,5 @@ Partial Class Game
     Friend WithEvents lblLife As Label
     Friend WithEvents timRefreshRate As Timer
     Friend WithEvents timGame As Timer
+    Friend WithEvents lblDebug As Label
 End Class
