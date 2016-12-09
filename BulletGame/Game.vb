@@ -282,10 +282,18 @@
 
         For Each thing As Piece In pRowTop
 
-            If TypeOf (thing) IsNot Bullet And TypeOf (pRowBot(i)) IsNot Bullet Then
+            If TypeOf (pRowTop(i)) IsNot Bullet And TypeOf (pRowBot(i)) IsNot Bullet Then
 
-                pRowBot(i) = thing
+                pRowBot(i) = pRowTop(i)
 
+            ElseIf TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
+
+                If (HitDetect(pRowBot(i), pRowTop(i))) Then
+                    pRowTop(i) = New Blank
+                End If
+
+                pRowBot(i) = New Blank
+                lblDebug2.Text = "Drop"
             End If
 
             i += 1
@@ -301,11 +309,15 @@
 
         For Each thing As Piece In pRowBot
 
-            If TypeOf pRowTop(i) Is Obstacle And TypeOf thing Is Bullet Then
+            If TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
 
-                HitDetect(thing, pRowTop(i))
+                If (HitDetect(pRowBot(i), pRowTop(i))) Then
+                    pRowTop(i) = New Blank
+                End If
 
-            ElseIf TypeOf thing Is Bullet Then
+                pRowBot(i) = New Blank
+                lblDebug2.Text = "Raise"
+            ElseIf TypeOf pRowBot(i) Is Bullet Then
                 pRowTop(i) = pRowBot(i)
                 pRowBot(i) = New Blank
             End If
@@ -317,22 +329,23 @@
 
     End Function
 
-    Public Sub HitDetect(ByRef bottom As Piece, ByRef top As Piece)
+    Public Function HitDetect(ByRef bottom As Piece, ByRef top As Piece) As Boolean
 
         If CType(top, Obstacle).Hit(CType(bottom, Bullet).Damage) Then
 
-            top = New Blank
-            bottom = New Blank
             lblDebug.Text = "kill!"
+            Return 1
 
         Else
 
-            bottom = New Blank
             lblDebug.Text = "Hit!"
+            Return 0
 
         End If
 
-    End Sub
+        intHitCount += 1
+
+    End Function
 
     Public Function LoadBlank() As Piece()
 
@@ -424,6 +437,26 @@
         dblTime = 0
         intHitCount = 0
         intGrabCount = 0
+
+        playerRow = LoadBlank()
+        row0 = LoadBlank()
+        row1 = LoadBlank()
+        row2 = LoadBlank()
+        row3 = LoadBlank()
+        row4 = LoadBlank()
+        row5 = LoadBlank()
+        row6 = LoadBlank()
+        row7 = LoadBlank()
+        row8 = LoadBlank()
+        row9 = LoadBlank()
+        row10 = LoadBlank()
+        row11 = LoadBlank()
+        row12 = LoadBlank()
+        row13 = LoadBlank()
+        row14 = LoadBlank()
+        row15 = LoadBlank()
+        row16 = LoadBlank()
+        rowTop = LoadBlank()
 
     End Sub
 

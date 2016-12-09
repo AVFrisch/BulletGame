@@ -59,6 +59,9 @@ Partial Class Game
         Me.timRefreshRate = New System.Windows.Forms.Timer(Me.components)
         Me.timGame = New System.Windows.Forms.Timer(Me.components)
         Me.lblDebug = New System.Windows.Forms.Label()
+        Me.lblDebug2 = New System.Windows.Forms.Label()
+        Me.lblHits = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -355,7 +358,7 @@ Partial Class Game
         'timProjectile
         '
         Me.timProjectile.Enabled = True
-        Me.timProjectile.Interval = 50
+        Me.timProjectile.Interval = 51
         '
         'Label1
         '
@@ -446,17 +449,48 @@ Partial Class Game
         'lblDebug
         '
         Me.lblDebug.Font = New System.Drawing.Font("Comic Sans MS", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDebug.Location = New System.Drawing.Point(884, 248)
+        Me.lblDebug.Location = New System.Drawing.Point(884, 152)
         Me.lblDebug.Name = "lblDebug"
         Me.lblDebug.Size = New System.Drawing.Size(310, 91)
         Me.lblDebug.TabIndex = 32
         Me.lblDebug.Text = "Label5"
+        '
+        'lblDebug2
+        '
+        Me.lblDebug2.Font = New System.Drawing.Font("Comic Sans MS", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDebug2.Location = New System.Drawing.Point(884, 252)
+        Me.lblDebug2.Name = "lblDebug2"
+        Me.lblDebug2.Size = New System.Drawing.Size(310, 91)
+        Me.lblDebug2.TabIndex = 33
+        Me.lblDebug2.Text = "Label5"
+        '
+        'lblHits
+        '
+        Me.lblHits.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblHits.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHits.Location = New System.Drawing.Point(962, 395)
+        Me.lblHits.Name = "lblHits"
+        Me.lblHits.Size = New System.Drawing.Size(137, 32)
+        Me.lblHits.TabIndex = 35
+        Me.lblHits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label6
+        '
+        Me.Label6.Location = New System.Drawing.Point(851, 400)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(105, 21)
+        Me.Label6.TabIndex = 34
+        Me.Label6.Text = "Hits"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 26.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1272, 693)
+        Me.Controls.Add(Me.lblHits)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.lblDebug2)
         Me.Controls.Add(Me.lblDebug)
         Me.Controls.Add(Me.lblSpecial)
         Me.Controls.Add(Me.lblLife)
@@ -517,4 +551,7 @@ Partial Class Game
     Friend WithEvents timRefreshRate As Timer
     Friend WithEvents timGame As Timer
     Friend WithEvents lblDebug As Label
+    Friend WithEvents lblDebug2 As Label
+    Friend WithEvents lblHits As Label
+    Friend WithEvents Label6 As Label
 End Class

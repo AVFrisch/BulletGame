@@ -16,6 +16,8 @@
 
         Health -= pDamage
 
+        Sym = "*"c
+
         If Health <= 0 Then
             Return 1
         End If
