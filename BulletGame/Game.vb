@@ -293,7 +293,7 @@
                 End If
 
                 pRowBot(i) = New Blank
-                lblDebug2.Text = "Drop"
+                'lblDebug2.Text = "Drop"
             End If
 
             i += 1
@@ -316,7 +316,7 @@
                 End If
 
                 pRowBot(i) = New Blank
-                lblDebug2.Text = "Raise"
+                'lblDebug2.Text = "Raise"
             ElseIf TypeOf pRowBot(i) Is Bullet Then
                 pRowTop(i) = pRowBot(i)
                 pRowBot(i) = New Blank
@@ -333,12 +333,12 @@
 
         If CType(top, Obstacle).Hit(CType(bottom, Bullet).Damage) Then
 
-            lblDebug.Text = "kill!"
+            'lblDebug.Text = "kill!"
             Return 1
 
         Else
 
-            lblDebug.Text = "Hit!"
+            'lblDebug.Text = "Hit!"
             Return 0
 
         End If
