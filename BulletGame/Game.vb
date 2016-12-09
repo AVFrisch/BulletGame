@@ -1,4 +1,7 @@
-﻿Public Class Game
+﻿Imports System.Data
+Imports System.Data.SqlClient
+
+Public Class Game
 
     'General Variables
     Dim intScore As Integer = 0
@@ -8,6 +11,7 @@
     Dim intShotCount As Integer = 0
     Dim intLife As Integer = 10
     Dim strName As String = ""
+    Dim HSTable As New HighScoresDataSetTableAdapters.HighScoresTableAdapter
     Private placementRand As New Random
     Private oddsRand As New Random
 
@@ -321,6 +325,8 @@
 
         btnSubmit.Enabled = False
         strName = InputBox("What is your name?", "Submit Score", "")
+
+        HSTable.Insert(DateTime.Now, strName, intScore, chrPlayer)
 
     End Sub
 
@@ -640,6 +646,27 @@
 
         ''Updates Player line with new String
         'lblPlayerRow.Text = strPlayerLine
+
+
+    End Sub
+
+    Private Sub btnSpecial_Click(sender As Object, e As EventArgs) Handles btnSpecial.Click
+
+
+        Select Case chrPlayer
+            Case "X"c
+
+
+
+            Case "O"c
+
+
+
+            Case "V"c
+
+
+
+        End Select
 
 
     End Sub

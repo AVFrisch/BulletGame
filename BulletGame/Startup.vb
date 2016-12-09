@@ -51,14 +51,14 @@
 
     Private Sub btnOptions_Click(sender As Object, e As EventArgs) Handles btnOptions.Click
 
-        If Me.Height = 300 Then
+        If Me.Height = 330 Then
 
             Me.Height = 500
             btnOptions.Text = "^ Less Options ^"
 
         Else
 
-            Me.Height = 300
+            Me.Height = 330
             btnOptions.Text = "v More Options v"
 
         End If

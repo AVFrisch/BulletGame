@@ -283,7 +283,7 @@ Partial Class GameSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(594, 431)
+        Me.ClientSize = New System.Drawing.Size(594, 283)
         Me.Controls.Add(Me.chkGrid)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label4)
