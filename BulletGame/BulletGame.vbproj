@@ -93,7 +93,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HighScoresDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Heart.vb" />
     <Compile Include="Obstacle.vb" />
+    <Compile Include="Bam.vb" />
+    <Compile Include="Diamond.vb" />
     <Compile Include="Pow.vb" />
     <Compile Include="Pew.vb" />
     <Compile Include="Piece.vb" />

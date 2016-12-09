@@ -6,9 +6,11 @@ Public Class Game
     'General Variables
     Dim intScore As Integer = 0
     Dim dblTime As Double = 0
+    Dim intSecondsCounter As Integer = 0
     Dim intTimeBonus As Integer = 0
     Dim intHitCount As Integer = 0
     Dim intShotCount As Integer = 0
+    Dim intSpecial As Integer = 0
     Dim intLife As Integer = 10
     Dim strName As String = ""
     Dim HSTable As New HighScoresDataSetTableAdapters.HighScoresTableAdapter
@@ -124,6 +126,18 @@ Public Class Game
 
         dblTime += 0.25
 
+        If intSecondsCounter <> 3 Then
+            intSecondsCounter += 1
+        Else
+            intSecondsCounter = 0
+        End If
+
+        If intSecondsCounter = 0 And intSpecial <> 0 Then
+
+            intSpecial -= 1
+
+        End If
+
     End Sub
 
     'Controls timed drops
@@ -235,6 +249,7 @@ Public Class Game
         lblHits.Text = intHitCount.ToString
         lblLife.Text = intLife.ToString
         lblShots.Text = intShotCount.ToString
+        lblSpecial.Text = intSpecial.ToString()
 
         If intLife <= 0 Then
             StopGame()
@@ -276,7 +291,10 @@ Public Class Game
         If intPlayerPos > 0 Then
             playerRow(intPlayerPos) = New Blank
             intPlayerPos -= 1
-            If TypeOf playerRow(intPlayerPos) Is Obstacle Then
+
+            If TypeOf playerRow(intPlayerPos) Is Heart Then
+                intLife += 1
+            ElseIf TypeOf playerRow(intPlayerPos) Is Obstacle Then
                 intLife -= 1
                 intScore -= 110
             End If
@@ -296,7 +314,9 @@ Public Class Game
         If intPlayerPos < (15) Then
             playerRow(intPlayerPos) = New Blank
             intPlayerPos += 1
-            If TypeOf playerRow(intPlayerPos) Is Obstacle Then
+            If TypeOf playerRow(intPlayerPos) Is Heart Then
+                intLife += 1
+            ElseIf TypeOf playerRow(intPlayerPos) Is Obstacle Then
                 intLife -= 1
                 intScore -= 110
             End If
@@ -318,6 +338,50 @@ Public Class Game
 
         intScore -= 25
         intShotCount += 1
+
+    End Sub
+
+    Private Sub btnSpecial_Click(sender As Object, e As EventArgs) Handles btnSpecial.Click
+
+        If intSpecial = 0 Then
+
+            Select Case chrPlayer
+                Case "X"c
+
+                    row0(intPlayerPos) = New Bam
+                    intSpecial = 5
+
+                Case "O"c
+
+                    For i As Integer = 0 To 15 Step 1
+                        If TypeOf row0(i) Is Obstacle Then
+                            row0(i) = New Heart
+                        End If
+                        If TypeOf row1(i) Is Obstacle Then
+                            row0(i) = New Heart
+                        End If
+                        If TypeOf row2(i) Is Obstacle Then
+                            row0(i) = New Heart
+                        End If
+                        If TypeOf row3(i) Is Obstacle Then
+                            row0(i) = New Heart
+                        End If
+                    Next
+                    intSpecial = 10
+
+
+                Case "V"c
+
+                    For i As Integer = 0 To 15 Step 1
+                        row0(i) = New Diamond
+                    Next
+                    intSpecial = 5
+
+            End Select
+
+
+
+        End If
 
     End Sub
 
@@ -354,21 +418,32 @@ Public Class Game
 
     Public Function Drop(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
 
-        Dim i As Integer = 0
+        For i As Integer = 0 To 15 Step 1
 
-        For Each thing As Piece In pRowTop
+            If TypeOf pRowTop(i) Is Heart And TypeOf pRowBot(i) Is Player Then
 
-            If TypeOf (thing) Is Obstacle And TypeOf pRowBot(i) Is Player Then
+                intLife += 1
+
+            ElseIf TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Player Then
 
                 intLife -= 1
                 intScore -= 200
-                thing = Nothing
+                pRowTop(i) = Nothing
 
             ElseIf TypeOf (pRowTop(i)) IsNot Bullet And TypeOf (pRowBot(i)) IsNot Bullet Then
 
                 pRowBot(i) = pRowTop(i)
 
             ElseIf TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
+
+                If TypeOf pRowBot(i) Is Bam Then
+
+                    For i2 As Integer = 0 To 15 Step 1
+                        pRowBot(i2) = New Pew
+                    Next
+                    Return pRowBot
+
+                End If
 
                 If (HitDetect(pRowBot(i), pRowTop(i))) Then
                     pRowTop(i) = New Blank
@@ -378,7 +453,6 @@ Public Class Game
                 'lblDebug2.Text = "Drop"
             End If
 
-            i += 1
         Next
 
         Return pRowBot
@@ -387,11 +461,18 @@ Public Class Game
 
     Public Function Raise(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
 
-        Dim i As Integer = 0
-
-        For Each thing As Piece In pRowBot
+        For i As Integer = 0 To 15 Step 1
 
             If TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
+
+                If TypeOf pRowBot(i) Is Bam Then
+
+                    For i2 As Integer = 0 To 15 Step 1
+                        pRowBot(i2) = New Pew
+                    Next
+                    Return pRowBot
+
+                End If
 
                 If (HitDetect(pRowBot(i), pRowTop(i))) Then
                     pRowTop(i) = New Blank
@@ -404,7 +485,6 @@ Public Class Game
                 pRowBot(i) = New Blank
             End If
 
-            i += 1
         Next
 
         Return pRowBot
@@ -443,6 +523,8 @@ Public Class Game
         Return blankRow
 
     End Function
+
+
 
     Public Function LoadTop() As Piece()
 
@@ -646,27 +728,6 @@ Public Class Game
 
         ''Updates Player line with new String
         'lblPlayerRow.Text = strPlayerLine
-
-
-    End Sub
-
-    Private Sub btnSpecial_Click(sender As Object, e As EventArgs) Handles btnSpecial.Click
-
-
-        Select Case chrPlayer
-            Case "X"c
-
-
-
-            Case "O"c
-
-
-
-            Case "V"c
-
-
-
-        End Select
 
 
     End Sub

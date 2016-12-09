@@ -3,7 +3,7 @@
 
     Overrides Property Sym As Char = "+"c
 
-    Public Property Health As Integer
+    Public Overridable Property Health As Integer
 
     Public Sub New()
 
