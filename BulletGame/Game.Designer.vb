@@ -62,6 +62,12 @@ Partial Class Game
         Me.lblDebug2 = New System.Windows.Forms.Label()
         Me.lblHits = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.btnSpecial = New System.Windows.Forms.Button()
+        Me.btnExit = New System.Windows.Forms.Button()
+        Me.btnSubmit = New System.Windows.Forms.Button()
+        Me.btnReset = New System.Windows.Forms.Button()
+        Me.lblShots = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -380,7 +386,7 @@ Partial Class Game
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(851, 467)
+        Me.Label3.Location = New System.Drawing.Point(851, 471)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(105, 21)
         Me.Label3.TabIndex = 26
@@ -389,7 +395,7 @@ Partial Class Game
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(851, 531)
+        Me.Label4.Location = New System.Drawing.Point(851, 534)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(105, 21)
         Me.Label4.TabIndex = 27
@@ -430,7 +436,7 @@ Partial Class Game
         '
         Me.lblLife.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblLife.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLife.Location = New System.Drawing.Point(962, 462)
+        Me.lblLife.Location = New System.Drawing.Point(962, 464)
         Me.lblLife.Name = "lblLife"
         Me.lblLife.Size = New System.Drawing.Size(137, 32)
         Me.lblLife.TabIndex = 30
@@ -449,26 +455,28 @@ Partial Class Game
         'lblDebug
         '
         Me.lblDebug.Font = New System.Drawing.Font("Comic Sans MS", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDebug.Location = New System.Drawing.Point(884, 152)
+        Me.lblDebug.Location = New System.Drawing.Point(1260, 152)
         Me.lblDebug.Name = "lblDebug"
         Me.lblDebug.Size = New System.Drawing.Size(310, 91)
         Me.lblDebug.TabIndex = 32
         Me.lblDebug.Text = "Label5"
+        Me.lblDebug.Visible = False
         '
         'lblDebug2
         '
         Me.lblDebug2.Font = New System.Drawing.Font("Comic Sans MS", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDebug2.Location = New System.Drawing.Point(884, 252)
+        Me.lblDebug2.Location = New System.Drawing.Point(1260, 252)
         Me.lblDebug2.Name = "lblDebug2"
         Me.lblDebug2.Size = New System.Drawing.Size(310, 91)
         Me.lblDebug2.TabIndex = 33
         Me.lblDebug2.Text = "Label5"
+        Me.lblDebug2.Visible = False
         '
         'lblHits
         '
         Me.lblHits.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblHits.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHits.Location = New System.Drawing.Point(962, 395)
+        Me.lblHits.Location = New System.Drawing.Point(962, 401)
         Me.lblHits.Name = "lblHits"
         Me.lblHits.Size = New System.Drawing.Size(137, 32)
         Me.lblHits.TabIndex = 35
@@ -476,18 +484,82 @@ Partial Class Game
         '
         'Label6
         '
-        Me.Label6.Location = New System.Drawing.Point(851, 400)
+        Me.Label6.Location = New System.Drawing.Point(851, 408)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(105, 21)
         Me.Label6.TabIndex = 34
         Me.Label6.Text = "Hits"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'btnSpecial
+        '
+        Me.btnSpecial.Location = New System.Drawing.Point(12, 305)
+        Me.btnSpecial.Name = "btnSpecial"
+        Me.btnSpecial.Size = New System.Drawing.Size(400, 100)
+        Me.btnSpecial.TabIndex = 36
+        Me.btnSpecial.Text = "&POWER!"
+        Me.btnSpecial.UseVisualStyleBackColor = True
+        '
+        'btnExit
+        '
+        Me.btnExit.Location = New System.Drawing.Point(12, 573)
+        Me.btnExit.Name = "btnExit"
+        Me.btnExit.Size = New System.Drawing.Size(200, 100)
+        Me.btnExit.TabIndex = 38
+        Me.btnExit.Text = "Close"
+        Me.btnExit.UseVisualStyleBackColor = True
+        Me.btnExit.Visible = False
+        '
+        'btnSubmit
+        '
+        Me.btnSubmit.Location = New System.Drawing.Point(12, 467)
+        Me.btnSubmit.Name = "btnSubmit"
+        Me.btnSubmit.Size = New System.Drawing.Size(400, 100)
+        Me.btnSubmit.TabIndex = 37
+        Me.btnSubmit.Text = "Submit Score?"
+        Me.btnSubmit.UseVisualStyleBackColor = True
+        Me.btnSubmit.Visible = False
+        '
+        'btnReset
+        '
+        Me.btnReset.Location = New System.Drawing.Point(212, 573)
+        Me.btnReset.Name = "btnReset"
+        Me.btnReset.Size = New System.Drawing.Size(200, 100)
+        Me.btnReset.TabIndex = 39
+        Me.btnReset.Text = "Reset"
+        Me.btnReset.UseVisualStyleBackColor = True
+        Me.btnReset.Visible = False
+        '
+        'lblShots
+        '
+        Me.lblShots.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblShots.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblShots.Location = New System.Drawing.Point(962, 338)
+        Me.lblShots.Name = "lblShots"
+        Me.lblShots.Size = New System.Drawing.Size(137, 32)
+        Me.lblShots.TabIndex = 41
+        Me.lblShots.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label7
+        '
+        Me.Label7.Location = New System.Drawing.Point(851, 345)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(105, 21)
+        Me.Label7.TabIndex = 40
+        Me.Label7.Text = "Shots"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 26.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1272, 693)
+        Me.Controls.Add(Me.lblShots)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.btnReset)
+        Me.Controls.Add(Me.btnExit)
+        Me.Controls.Add(Me.btnSubmit)
+        Me.Controls.Add(Me.btnSpecial)
         Me.Controls.Add(Me.lblHits)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblDebug2)
@@ -554,4 +626,10 @@ Partial Class Game
     Friend WithEvents lblDebug2 As Label
     Friend WithEvents lblHits As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents btnSpecial As Button
+    Friend WithEvents btnExit As Button
+    Friend WithEvents btnSubmit As Button
+    Friend WithEvents btnReset As Button
+    Friend WithEvents lblShots As Label
+    Friend WithEvents Label7 As Label
 End Class

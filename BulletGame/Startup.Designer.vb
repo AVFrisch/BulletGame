@@ -177,7 +177,7 @@ Partial Class GameSettings
         '
         Me.tkbSpeed.Location = New System.Drawing.Point(194, 292)
         Me.tkbSpeed.Maximum = 20
-        Me.tkbSpeed.Minimum = 1
+        Me.tkbSpeed.Minimum = 5
         Me.tkbSpeed.Name = "tkbSpeed"
         Me.tkbSpeed.Size = New System.Drawing.Size(200, 56)
         Me.tkbSpeed.TabIndex = 10

@@ -1,11 +1,13 @@
 ﻿Public Class Game
 
     'General Variables
-    Dim blnStop As Boolean = 0
     Dim intScore As Integer = 0
     Dim dblTime As Double = 0
+    Dim intTimeBonus As Integer = 0
     Dim intHitCount As Integer = 0
-    Dim intGrabCount As Integer = 0
+    Dim intShotCount As Integer = 0
+    Dim intLife As Integer = 10
+    Dim strName As String = ""
     Private placementRand As New Random
     Private oddsRand As New Random
 
@@ -102,6 +104,13 @@
 
     End Sub
 
+    'Form Close
+    Private Sub Game_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
+        StopGame()
+
+    End Sub
+
     '''''''''''''''
     'Timers
     '''''''''''''''
@@ -167,6 +176,8 @@
         'Puts player back
         playerRow(intPlayerPos) = PC
 
+        intScore += 5
+
     End Sub
 
     'Timer for projectiles
@@ -214,10 +225,32 @@
     Private Sub timRefreshRate_Tick(sender As Object, e As EventArgs) Handles timRefreshRate.Tick
 
         UpdateBoard()
-        CalcScore()
 
         lblTime.Text = dblTime.ToString("N2")
-        lblScore.Text = intScore
+        lblScore.Text = intScore.ToString
+        lblHits.Text = intHitCount.ToString
+        lblLife.Text = intLife.ToString
+        lblShots.Text = intShotCount.ToString
+
+        If intLife <= 0 Then
+            StopGame()
+            btnSubmit.Visible = True
+            btnExit.Visible = True
+            btnReset.Visible = True
+
+            Select Case strDifficulty
+                Case "Easy"
+                    intTimeBonus = CInt(dblTime * 5)
+                Case "Medium"
+                    intTimeBonus = CInt(dblTime * 20)
+                Case "Hard"
+                    intTimeBonus = CInt(dblTime * 30)
+            End Select
+
+            intScore += intTimeBonus
+
+            MessageBox.Show("Game Over!" & vbNewLine & "Your time bonus is " & intTimeBonus.ToString(), "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        End If
 
         ''Currently hardcoded 10% chance for obstacles to drop on their own
         ''every time the board is refreshed
@@ -239,7 +272,12 @@
         If intPlayerPos > 0 Then
             playerRow(intPlayerPos) = New Blank
             intPlayerPos -= 1
+            If TypeOf playerRow(intPlayerPos) Is Obstacle Then
+                intLife -= 1
+                intScore -= 110
+            End If
             playerRow(intPlayerPos) = PC
+            intScore += 10
         Else
             My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
         End If
@@ -254,7 +292,12 @@
         If intPlayerPos < (15) Then
             playerRow(intPlayerPos) = New Blank
             intPlayerPos += 1
+            If TypeOf playerRow(intPlayerPos) Is Obstacle Then
+                intLife -= 1
+                intScore -= 110
+            End If
             playerRow(intPlayerPos) = PC
+            intScore += 10
         Else
             My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
         End If
@@ -269,6 +312,33 @@
             row0(intPlayerPos) = New Pow
         End If
 
+        intScore -= 25
+        intShotCount += 1
+
+    End Sub
+
+    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+
+        btnSubmit.Enabled = False
+        strName = InputBox("What is your name?", "Submit Score", "")
+
+    End Sub
+
+    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+
+        btnSubmit.Visible = False
+        btnExit.Visible = False
+        btnReset.Visible = False
+        ResetGame()
+
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+
+        btnSubmit.Visible = False
+        btnExit.Visible = False
+        btnReset.Visible = False
+        Me.Close()
 
     End Sub
 
@@ -282,7 +352,13 @@
 
         For Each thing As Piece In pRowTop
 
-            If TypeOf (pRowTop(i)) IsNot Bullet And TypeOf (pRowBot(i)) IsNot Bullet Then
+            If TypeOf (thing) Is Obstacle And TypeOf pRowBot(i) Is Player Then
+
+                intLife -= 1
+                intScore -= 200
+                thing = Nothing
+
+            ElseIf TypeOf (pRowTop(i)) IsNot Bullet And TypeOf (pRowBot(i)) IsNot Bullet Then
 
                 pRowBot(i) = pRowTop(i)
 
@@ -331,21 +407,24 @@
 
     Public Function HitDetect(ByRef bottom As Piece, ByRef top As Piece) As Boolean
 
+        intHitCount += 1
+
         If CType(top, Obstacle).Hit(CType(bottom, Bullet).Damage) Then
 
             'lblDebug.Text = "kill!"
+            intScore += 75
             Return 1
 
         Else
 
             'lblDebug.Text = "Hit!"
+            intScore += 50
             Return 0
 
         End If
 
-        intHitCount += 1
-
     End Function
+
 
     Public Function LoadBlank() As Piece()
 
@@ -425,18 +504,14 @@
 
     End Function
 
-    Private Sub CalcScore()
-
-
-
-    End Sub
 
     Private Sub ResetGame()
 
         intScore = 0
         dblTime = 0
         intHitCount = 0
-        intGrabCount = 0
+        intShotCount = 0
+        intLife = 10
 
         playerRow = LoadBlank()
         row0 = LoadBlank()
@@ -458,6 +533,20 @@
         row16 = LoadBlank()
         rowTop = LoadBlank()
 
+        timGame.Enabled = True
+        timDrop.Enabled = True
+        timRefreshRate.Enabled = True
+        timProjectile.Enabled = True
+
+        btnSubmit.Enabled = True
+
+    End Sub
+
+    Private Sub StopGame()
+        timGame.Enabled = False
+        timDrop.Enabled = False
+        timRefreshRate.Enabled = False
+        timProjectile.Enabled = False
     End Sub
 
     '''''''''''''''
@@ -554,6 +643,10 @@
 
 
     End Sub
+
+
+
+
 
 
     'Private Function BulletTravel(ByVal strRow As String) As String
