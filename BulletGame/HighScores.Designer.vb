@@ -30,7 +30,6 @@ Partial Class HighScores
         Me.CharacterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HighScoresBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.HighScoresDataSet = New BulletGame.HighScoresDataSet()
-        Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.HighScoresTableAdapter = New BulletGame.HighScoresDataSetTableAdapters.HighScoresTableAdapter()
@@ -90,17 +89,6 @@ Partial Class HighScores
         Me.HighScoresDataSet.DataSetName = "HighScoresDataSet"
         Me.HighScoresDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'btnRefresh
-        '
-        Me.btnRefresh.Font = New System.Drawing.Font("Lucida Console", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRefresh.Location = New System.Drawing.Point(17, 506)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(133, 62)
-        Me.btnRefresh.TabIndex = 1
-        Me.btnRefresh.Text = "Refresh"
-        Me.btnRefresh.UseVisualStyleBackColor = True
-        '
         'btnClose
         '
         Me.btnClose.Font = New System.Drawing.Font("Lucida Console", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -115,7 +103,7 @@ Partial Class HighScores
         'btnDelete
         '
         Me.btnDelete.Font = New System.Drawing.Font("Lucida Console", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(158, 506)
+        Me.btnDelete.Location = New System.Drawing.Point(17, 506)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(133, 62)
@@ -134,7 +122,6 @@ Partial Class HighScores
         Me.ClientSize = New System.Drawing.Size(810, 582)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClose)
-        Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.dgvScores)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "HighScores"
@@ -147,7 +134,6 @@ Partial Class HighScores
     End Sub
 
     Friend WithEvents dgvScores As DataGridView
-    Friend WithEvents btnRefresh As Button
     Friend WithEvents btnClose As Button
     Friend WithEvents btnDelete As Button
     Friend WithEvents HighScoresDataSet As HighScoresDataSet
