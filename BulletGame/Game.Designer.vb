@@ -425,7 +425,7 @@ Partial Class Game
         'lblSpecial
         '
         Me.lblSpecial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblSpecial.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSpecial.Font = New System.Drawing.Font("Lucida Console", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSpecial.Location = New System.Drawing.Point(962, 527)
         Me.lblSpecial.Name = "lblSpecial"
         Me.lblSpecial.Size = New System.Drawing.Size(137, 32)

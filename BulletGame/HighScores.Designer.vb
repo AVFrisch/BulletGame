@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class HighScores
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class HighScores
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.dgvScores = New System.Windows.Forms.DataGridView()
@@ -57,6 +57,7 @@ Partial Class HighScores
         Me.DateDataGridViewTextBoxColumn.HeaderText = "Date"
         Me.DateDataGridViewTextBoxColumn.Name = "DateDataGridViewTextBoxColumn"
         Me.DateDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DateDataGridViewTextBoxColumn.Width = 200
         '
         'PlayerNameDataGridViewTextBoxColumn
         '
@@ -64,6 +65,7 @@ Partial Class HighScores
         Me.PlayerNameDataGridViewTextBoxColumn.HeaderText = "Player Name"
         Me.PlayerNameDataGridViewTextBoxColumn.Name = "PlayerNameDataGridViewTextBoxColumn"
         Me.PlayerNameDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PlayerNameDataGridViewTextBoxColumn.Width = 150
         '
         'ScoreDataGridViewTextBoxColumn
         '
@@ -78,6 +80,7 @@ Partial Class HighScores
         Me.CharacterDataGridViewTextBoxColumn.HeaderText = "Character"
         Me.CharacterDataGridViewTextBoxColumn.Name = "CharacterDataGridViewTextBoxColumn"
         Me.CharacterDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CharacterDataGridViewTextBoxColumn.Width = 75
         '
         'HighScoresBindingSource
         '

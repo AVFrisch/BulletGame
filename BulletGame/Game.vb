@@ -138,6 +138,12 @@ Public Class Game
 
         End If
 
+        If intSpecial = 0 Then
+            lblSpecial.ForeColor = Color.Green
+        Else
+            lblSpecial.ForeColor = Color.Black
+        End If
+
     End Sub
 
     'Controls timed drops
@@ -301,7 +307,9 @@ Public Class Game
             playerRow(intPlayerPos) = PC
             intScore += 10
         Else
-            My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
+            If blnAudio Then
+                My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
+            End If
         End If
 
     End Sub
@@ -323,7 +331,9 @@ Public Class Game
             playerRow(intPlayerPos) = PC
             intScore += 10
         Else
-            My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
+            If blnAudio Then
+                My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Hand)
+            End If
         End If
 
     End Sub
@@ -374,8 +384,9 @@ Public Class Game
 
                     For i As Integer = 0 To 15 Step 1
                         row0(i) = New Diamond
+                        row1(i) = New Diamond
                     Next
-                    intSpecial = 5
+                    intSpecial = 7
 
             End Select
 
@@ -600,6 +611,8 @@ Public Class Game
         intHitCount = 0
         intShotCount = 0
         intLife = 10
+
+        PC.RefreshChar()
 
         playerRow = LoadBlank()
         row0 = LoadBlank()
