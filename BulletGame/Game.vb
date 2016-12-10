@@ -8,6 +8,7 @@ Public Class Game
     Dim dblTime As Double = 0
     Dim intSecondsCounter As Integer = 0
     Dim intTimeBonus As Integer = 0
+    Dim intSpeedBonus As Integer = 0
     Dim intHitCount As Integer = 0
     Dim intShotCount As Integer = 0
     Dim intSpecial As Integer = 0
@@ -272,9 +273,11 @@ Public Class Game
                     intTimeBonus = CInt(dblTime * 30)
             End Select
 
-            intScore += intTimeBonus
+            intSpeedBonus = intGameSpeed ^ 2
 
-            MessageBox.Show("Game Over!" & vbNewLine & "Your time bonus is " & intTimeBonus.ToString(), "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            intScore += intTimeBonus + intSpeedBonus
+
+            MessageBox.Show("Game Over!" & vbNewLine & "Your time bonus is " & intTimeBonus.ToString() & vbNewLine & "Your speed bonus is " & intSpeedBonus.ToString(), "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         End If
 
         ''Currently hardcoded 10% chance for obstacles to drop on their own
