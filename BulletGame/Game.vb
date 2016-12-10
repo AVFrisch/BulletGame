@@ -401,7 +401,12 @@ Public Class Game
         btnSubmit.Enabled = False
         strName = InputBox("What is your name?", "Submit Score", "")
 
-        HSTable.Insert(DateTime.Now, strName, intScore, chrPlayer)
+        If strName = "" Then
+            MessageBox.Show("Score submission must have a name, please try again", "Submission failure", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            btnSubmit.Enabled = True
+        Else
+            HSTable.Insert(DateTime.Now, strName, intScore, chrPlayer)
+        End If
 
     End Sub
 

@@ -58,7 +58,7 @@ Partial Class GameSettings
         Me.lblTitle.Location = New System.Drawing.Point(197, 9)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(283, 42)
+        Me.lblTitle.Size = New System.Drawing.Size(226, 34)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Bullet Game"
         '
@@ -69,7 +69,7 @@ Partial Class GameSettings
         Me.cboCharacter.Items.AddRange(New Object() {"X - Basic", "O - Shielded", "V - Offensive"})
         Me.cboCharacter.Location = New System.Drawing.Point(195, 58)
         Me.cboCharacter.Name = "cboCharacter"
-        Me.cboCharacter.Size = New System.Drawing.Size(204, 28)
+        Me.cboCharacter.Size = New System.Drawing.Size(204, 24)
         Me.cboCharacter.TabIndex = 1
         '
         'lblChar
@@ -107,7 +107,7 @@ Partial Class GameSettings
         Me.radEasy.AutoSize = True
         Me.radEasy.Location = New System.Drawing.Point(13, 22)
         Me.radEasy.Name = "radEasy"
-        Me.radEasy.Size = New System.Drawing.Size(78, 24)
+        Me.radEasy.Size = New System.Drawing.Size(65, 20)
         Me.radEasy.TabIndex = 5
         Me.radEasy.Text = "Easy"
         Me.radEasy.UseVisualStyleBackColor = True
@@ -128,7 +128,7 @@ Partial Class GameSettings
         Me.radHard.AutoSize = True
         Me.radHard.Location = New System.Drawing.Point(13, 75)
         Me.radHard.Name = "radHard"
-        Me.radHard.Size = New System.Drawing.Size(78, 24)
+        Me.radHard.Size = New System.Drawing.Size(65, 20)
         Me.radHard.TabIndex = 7
         Me.radHard.Text = "Hard"
         Me.radHard.UseVisualStyleBackColor = True
@@ -139,7 +139,7 @@ Partial Class GameSettings
         Me.radMed.Checked = True
         Me.radMed.Location = New System.Drawing.Point(13, 49)
         Me.radMed.Name = "radMed"
-        Me.radMed.Size = New System.Drawing.Size(102, 24)
+        Me.radMed.Size = New System.Drawing.Size(85, 20)
         Me.radMed.TabIndex = 6
         Me.radMed.TabStop = True
         Me.radMed.Text = "Medium"
@@ -179,7 +179,7 @@ Partial Class GameSettings
         Me.tkbSpeed.Maximum = 20
         Me.tkbSpeed.Minimum = 5
         Me.tkbSpeed.Name = "tkbSpeed"
-        Me.tkbSpeed.Size = New System.Drawing.Size(200, 56)
+        Me.tkbSpeed.Size = New System.Drawing.Size(200, 32)
         Me.tkbSpeed.TabIndex = 10
         Me.tkbSpeed.Value = 10
         '
@@ -210,7 +210,7 @@ Partial Class GameSettings
         Me.chkAudio.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkAudio.Location = New System.Drawing.Point(480, 348)
         Me.chkAudio.Name = "chkAudio"
-        Me.chkAudio.Size = New System.Drawing.Size(91, 24)
+        Me.chkAudio.Size = New System.Drawing.Size(76, 20)
         Me.chkAudio.TabIndex = 13
         Me.chkAudio.Text = "Audio"
         Me.chkAudio.UseVisualStyleBackColor = True
@@ -240,7 +240,7 @@ Partial Class GameSettings
         Me.rad60.AutoSize = True
         Me.rad60.Location = New System.Drawing.Point(125, 18)
         Me.rad60.Name = "rad60"
-        Me.rad60.Size = New System.Drawing.Size(54, 24)
+        Me.rad60.Size = New System.Drawing.Size(45, 20)
         Me.rad60.TabIndex = 7
         Me.rad60.Text = "60"
         Me.rad60.UseVisualStyleBackColor = True
@@ -251,7 +251,7 @@ Partial Class GameSettings
         Me.rad30.Checked = True
         Me.rad30.Location = New System.Drawing.Point(74, 18)
         Me.rad30.Name = "rad30"
-        Me.rad30.Size = New System.Drawing.Size(54, 24)
+        Me.rad30.Size = New System.Drawing.Size(45, 20)
         Me.rad30.TabIndex = 6
         Me.rad30.TabStop = True
         Me.rad30.Text = "30"
@@ -262,7 +262,7 @@ Partial Class GameSettings
         Me.rad15.AutoSize = True
         Me.rad15.Location = New System.Drawing.Point(23, 18)
         Me.rad15.Name = "rad15"
-        Me.rad15.Size = New System.Drawing.Size(54, 24)
+        Me.rad15.Size = New System.Drawing.Size(45, 20)
         Me.rad15.TabIndex = 5
         Me.rad15.Text = "15"
         Me.rad15.UseVisualStyleBackColor = True
@@ -274,16 +274,16 @@ Partial Class GameSettings
         Me.chkGrid.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkGrid.Location = New System.Drawing.Point(480, 378)
         Me.chkGrid.Name = "chkGrid"
-        Me.chkGrid.Size = New System.Drawing.Size(79, 24)
+        Me.chkGrid.Size = New System.Drawing.Size(66, 20)
         Me.chkGrid.TabIndex = 15
         Me.chkGrid.Text = "Grid"
         Me.chkGrid.UseVisualStyleBackColor = True
         '
         'GameSettings
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(594, 283)
+        Me.ClientSize = New System.Drawing.Size(594, 285)
         Me.Controls.Add(Me.chkGrid)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label4)
