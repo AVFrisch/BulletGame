@@ -1,4 +1,6 @@
 ﻿Module Settings
+    'Extra class used to store settings
+    'with some defaults preset
 
     Public chrPlayer = "X"c
     Public strDifficulty = "Medium"

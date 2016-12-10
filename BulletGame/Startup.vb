@@ -2,6 +2,8 @@
 
     Private Sub btnStart_Click(sender As Object, e As EventArgs) Handles btnStart.Click
 
+        'Sends all settings to helper class
+
         Settings.chrPlayer = CChar(lblChar.Text)
 
         Select Case True
@@ -36,6 +38,7 @@
             Settings.chrGrid = " "c
         End If
 
+        'Loads game
         Game.ShowDialog()
 
     End Sub

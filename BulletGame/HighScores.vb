@@ -10,16 +10,18 @@
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
 
+        'Closes form
         Me.Close()
 
     End Sub
 
     Private Sub HighScores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'HighScoresDataSet.HighScores' table. You can move, or remove it, as needed.
+
         Me.HighScoresTableAdapter.Fill(Me.HighScoresDataSet.HighScores)
 
     End Sub
 
+    'Deletes item from database and gridview
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
 
@@ -29,6 +31,7 @@
 
     End Sub
 
+    'stores selected data
     Private Sub dgvScores_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvScores.CellContentClick
 
         selDate = dgvScores.Rows(e.RowIndex).Cells(0).Value

@@ -1,5 +1,6 @@
 ﻿Public Class Diamond
     Inherits Bullet
+    'Special bullet with ♦ shape
 
     Public Overrides Property Damage As Integer
 

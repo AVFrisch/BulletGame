@@ -19,13 +19,6 @@ Public Class Game
     Private oddsRand As New Random
 
 
-    'Startup Settings Variables
-    'Public chrPlayer As Char = Settings.chrPlayer
-    'Public strDifficulty As String = Settings.strDifficulty
-    'Public intGameSpeed As Integer = Settings.intGameSpeed
-    'Public intRefreshRate As Integer = Settings.intRefresh
-
-
     'Board Arrays
     Dim playerRow As Piece() = LoadBlank()
     Dim row0 As Piece() = LoadBlank()
@@ -54,46 +47,17 @@ Public Class Game
 
 
     '''''''''''''''
-    'Debug buttons
-    'all debug buttons use comic sans
-    '''''''''''''''
-    Private Sub btnDDrop_Click(sender As Object, e As EventArgs)
-
-        ''New Line Generation
-        ''Saves current line in case elements already exist on the line
-        'Dim strNextLine As String = lblTopRow.Text
-        ''Converts line into array of characters
-        'Dim chrNextLine() As Char = strNextLine.ToCharArray
-
-        ''Randomly adds an obstacle and pickup to the array
-        ''amount and details depend on difficulty selected
-
-        'chrNextLine(rand.Next(16)) = "+"
-
-        ''Resets next line to be rebuilt with new positions
-        'strNextLine = ""
-        ''Rebuilds next line with new positions
-        'For i As Integer = 0 To (chrNextLine.Length - 1) Step 1
-        '    strNextLine &= chrNextLine(i)
-        'Next
-
-        ''Updates next line with new String
-        'lblTopRow.Text = strNextLine
-
-        rowTop(placementRand.Next(16)) = New Obstacle
-
-    End Sub
-
-    '''''''''''''''
     'Background
     '''''''''''''''
 
     'Form Load
     Private Sub Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'Resets game in case of leftover data / initializes some things
         ResetGame()
 
         'Sets game refresh rate
+        'Trade possible performance for accuracy
         Select Case intRefresh
             Case 15
                 timRefreshRate.Interval = 67
@@ -106,14 +70,15 @@ Public Class Game
         'Sets game speed
         timDrop.Interval = CInt(1000 / Settings.intGameSpeed)
 
+        'Places player onto the board
         intPlayerPos = 8
-        UpdatePlayer()
 
     End Sub
 
     'Form Close
     Private Sub Game_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
+        'Stops game so no sound effects or messages pop up when game is closed
         StopGame()
 
     End Sub
@@ -125,20 +90,25 @@ Public Class Game
     'Records game time
     Private Sub timGame_Tick(sender As Object, e As EventArgs) Handles timGame.Tick
 
+        'Standard timer counting by quarter seconds kind of
+        'its a little slow but that's probably lag
         dblTime += 0.25
 
+        'Used to cound whole seconds without using another timer, used for specials
         If intSecondsCounter <> 3 Then
             intSecondsCounter += 1
         Else
             intSecondsCounter = 0
         End If
 
+        'ticks special counter ever second if a special isn't already off cooldown
         If intSecondsCounter = 0 And intSpecial <> 0 Then
 
             intSpecial -= 1
 
         End If
 
+        'Turns special counter green when no longer on cooldown
         If intSpecial = 0 Then
             lblSpecial.ForeColor = Color.Green
         Else
@@ -150,34 +120,12 @@ Public Class Game
     'Controls timed drops
     Private Sub timDrop_Tick(sender As Object, e As EventArgs) Handles timDrop.Tick
 
-        ''Sends all row arrays down one and generates a new blank for the top
-        ''this doesn't actually solve any of the problems I had before yet
-        'playerRow = row0
-        'row0 = row1
-        'row1 = row2
-        'row2 = row3
-        'row3 = row4
-        'row4 = row5
-        'row5 = row6
-        'row6 = row7
-        'row7 = row8
-        'row8 = row9
-        'row9 = row10
-        'row10 = row11
-        'row11 = row12
-        'row12 = row13
-        'row13 = row14
-        'row14 = row15
-        'row15 = row16
-        'row16 = rowTop
-        'rowTop = LoadBlank()
-
         'Memory management
         For Each thing As Piece In playerRow
             thing = Nothing
         Next
 
-        'ok but now this one does
+        'Moves rows down, ignoring bullets
         playerRow = Drop(row0, playerRow)
         row0 = Drop(row1, row0)
         row1 = Drop(row2, row1)
@@ -198,22 +146,16 @@ Public Class Game
         row16 = Drop(rowTop, row16)
         rowTop = LoadTop()
 
-        'Puts player back
+        'Puts player back onto player row
         playerRow(intPlayerPos) = PC
 
+        'Small score bonus for surviving each drop
         intScore += 5
 
     End Sub
 
     'Timer for projectiles
     Private Sub timProjectile_Tick(sender As Object, e As EventArgs) Handles timProjectile.Tick
-
-
-        For Each thing In rowTop
-            If TypeOf thing Is Bullet Then
-                thing = Nothing
-            End If
-        Next
 
         'Moves the bullets up
         row16 = Raise(rowTop, row16)
@@ -233,24 +175,17 @@ Public Class Game
         row2 = Raise(row3, row2)
         row1 = Raise(row2, row1)
         row0 = Raise(row1, row0)
-        'playerRow = Raise(row0, playerRow)
-
-        'Removes bullets that reach the top
-        For Each thing In rowTop
-            If TypeOf thing Is Bullet Then
-                thing = Nothing
-            End If
-        Next
-
-
+        'player row ignored since no bullets should be spawning there anyways
 
     End Sub
 
     'Sets game refresh rate
     Private Sub timRefreshRate_Tick(sender As Object, e As EventArgs) Handles timRefreshRate.Tick
 
+        'Redraws all lines on the board
         UpdateBoard()
 
+        'Updates labels
         lblTime.Text = dblTime.ToString("N2")
         lblScore.Text = intScore.ToString
         lblHits.Text = intHitCount.ToString
@@ -258,12 +193,15 @@ Public Class Game
         lblShots.Text = intShotCount.ToString
         lblSpecial.Text = intSpecial.ToString()
 
+        'Checks to see if you've died yet
         If intLife <= 0 Then
             StopGame()
+            'Stops game and shows ending options
             btnSubmit.Visible = True
             btnExit.Visible = True
             btnReset.Visible = True
 
+            'Calculates bonuses depending on difficulty and game speed
             Select Case strDifficulty
                 Case "Easy"
                     intTimeBonus = CInt(dblTime * 5)
@@ -280,12 +218,6 @@ Public Class Game
             MessageBox.Show("Game Over!" & vbNewLine & "Your time bonus is " & intTimeBonus.ToString() & vbNewLine & "Your speed bonus is " & intSpeedBonus.ToString(), "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         End If
 
-        ''Currently hardcoded 10% chance for obstacles to drop on their own
-        ''every time the board is refreshed
-        'If oddsRand.Next(100) < 10 Then
-        '    rowTop(placementRand.Next(16)) = New Obstacle
-        'End If
-
     End Sub
 
     '''''''''''''''
@@ -300,7 +232,7 @@ Public Class Game
         If intPlayerPos > 0 Then
             playerRow(intPlayerPos) = New Blank
             intPlayerPos -= 1
-
+            'Checks to see if the player has moved onto an obstacle or heart pickup and reacts accordingly
             If TypeOf playerRow(intPlayerPos) Is Heart Then
                 intLife += 1
             ElseIf TypeOf playerRow(intPlayerPos) Is Obstacle Then
@@ -308,6 +240,7 @@ Public Class Game
                 intScore -= 110
             End If
             playerRow(intPlayerPos) = PC
+            'Movement bonus to encourage not staying still
             intScore += 10
         Else
             If blnAudio Then
@@ -325,6 +258,7 @@ Public Class Game
         If intPlayerPos < (15) Then
             playerRow(intPlayerPos) = New Blank
             intPlayerPos += 1
+            'Checks to see if the player has moved onto an obstacle or heart pickup and reacts accordingly
             If TypeOf playerRow(intPlayerPos) Is Heart Then
                 intLife += 1
             ElseIf TypeOf playerRow(intPlayerPos) Is Obstacle Then
@@ -332,6 +266,7 @@ Public Class Game
                 intScore -= 110
             End If
             playerRow(intPlayerPos) = PC
+            'Movement bonus to encourage not staying still
             intScore += 10
         Else
             If blnAudio Then
@@ -343,12 +278,16 @@ Public Class Game
 
     Private Sub btnShoot_Click(sender As Object, e As EventArgs) Handles btnShoot.Click
 
+        'Fires a bullet depending on character selected
+        'the offensive character shoots more powerful bullets than the other two
         If chrPlayer = "X"c Or chrPlayer = "O"c Then
             row0(intPlayerPos) = New Pew
         ElseIf chrPlayer = "V"c Then
             row0(intPlayerPos) = New Pow
         End If
 
+        'Subtracts score for every shot to discourage spamming bullets randomly
+        'and also penalizes people who think they're clever for just holding down shoot
         intScore -= 25
         intShotCount += 1
 
@@ -356,16 +295,20 @@ Public Class Game
 
     Private Sub btnSpecial_Click(sender As Object, e As EventArgs) Handles btnSpecial.Click
 
+        'Checks to make sure the special isn't on cooldown
         If intSpecial = 0 Then
 
+            'Determines which special to use based on character selected
             Select Case chrPlayer
                 Case "X"c
 
+                    'Fires a bullet that expands on impact
                     row0(intPlayerPos) = New Bam
                     intSpecial = 5
 
                 Case "O"c
 
+                    'Turns all obstacles in the four rows above the player into hearts that increase life
                     For i As Integer = 0 To 15 Step 1
                         If TypeOf row0(i) Is Obstacle Then
                             row0(i) = New Heart
@@ -385,6 +328,7 @@ Public Class Game
 
                 Case "V"c
 
+                    'Shoots two rows of powerful bullets at once
                     For i As Integer = 0 To 15 Step 1
                         row0(i) = New Diamond
                         row1(i) = New Diamond
@@ -401,9 +345,11 @@ Public Class Game
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
 
+        'Asks for the player's name for score submission
         btnSubmit.Enabled = False
         strName = InputBox("What is your name?", "Submit Score", "")
 
+        'Cancels if the user doesn't enter a name, saves to database if they do
         If strName = "" Then
             MessageBox.Show("Score submission must have a name, please try again", "Submission failure", MessageBoxButtons.OK, MessageBoxIcon.Error)
             btnSubmit.Enabled = True
@@ -415,6 +361,7 @@ Public Class Game
 
     Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
 
+        'Resets game and hides ending options
         btnSubmit.Visible = False
         btnExit.Visible = False
         btnReset.Visible = False
@@ -424,6 +371,7 @@ Public Class Game
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
 
+        'Exits game and hides ending options
         btnSubmit.Visible = False
         btnExit.Visible = False
         btnReset.Visible = False
@@ -435,6 +383,7 @@ Public Class Game
     'Procedures and Functions
     '''''''''''''''
 
+    'Drops everything except bullets down one, taking into account bullet collision
     Public Function Drop(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
 
         For i As Integer = 0 To 15 Step 1
@@ -456,7 +405,7 @@ Public Class Game
             ElseIf TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
 
                 If TypeOf pRowBot(i) Is Bam Then
-
+                    'Special effect if special bullet hits
                     For i2 As Integer = 0 To 15 Step 1
                         pRowBot(i2) = New Pew
                     Next
@@ -478,6 +427,7 @@ Public Class Game
 
     End Function
 
+    'Raises all bullets, taking into account collision with obstacles
     Public Function Raise(ByVal pRowTop As Piece(), ByVal pRowBot As Piece()) As Piece()
 
         For i As Integer = 0 To 15 Step 1
@@ -485,7 +435,7 @@ Public Class Game
             If TypeOf pRowTop(i) Is Obstacle And TypeOf pRowBot(i) Is Bullet Then
 
                 If TypeOf pRowBot(i) Is Bam Then
-
+                    'Special effect if special bullet hits
                     For i2 As Integer = 0 To 15 Step 1
                         pRowBot(i2) = New Pew
                     Next
@@ -511,18 +461,18 @@ Public Class Game
     End Function
 
     Public Function HitDetect(ByRef bottom As Piece, ByRef top As Piece) As Boolean
-
+        'Counts 1 for a hit
         intHitCount += 1
 
         If CType(top, Obstacle).Hit(CType(bottom, Bullet).Damage) Then
 
-            'lblDebug.Text = "kill!"
+            '75 points for finishing off an obstacle
             intScore += 75
             Return 1
 
         Else
 
-            'lblDebug.Text = "Hit!"
+            '50 points for damaging an obstacle
             intScore += 50
             Return 0
 
@@ -530,7 +480,7 @@ Public Class Game
 
     End Function
 
-
+    'Loads a blank line
     Public Function LoadBlank() As Piece()
 
         Dim blankRow(15) As Piece
@@ -544,15 +494,17 @@ Public Class Game
     End Function
 
 
-
+    'Loads top line which includes obstacle generation
     Public Function LoadTop() As Piece()
 
         Dim topRow(15) As Piece
 
+        'Starts with a blank line
         For i As Integer = 0 To 15 Step 1
             topRow(i) = New Blank
         Next
 
+        'Determines how many obstacles to create based on difficulty
         Select Case strDifficulty
             Case "Easy"
                 topRow(placementRand.Next(16)) = New Obstacle
@@ -575,6 +527,7 @@ Public Class Game
 
     Public Sub UpdateBoard()
 
+        'Redraws each board row
         lblTopRow.Text = LoadRow(rowTop)
         lblRow0.Text = LoadRow(row0)
         lblRow1.Text = LoadRow(row1)
@@ -597,6 +550,7 @@ Public Class Game
 
     End Sub
 
+    'Function used for building each row
     Public Function LoadRow(ByVal pRow As Piece()) As String
 
         Dim i As Integer = 0
@@ -611,7 +565,7 @@ Public Class Game
 
     End Function
 
-
+    'Resets variables, clears board, resets buttons, restarts timers
     Private Sub ResetGame()
 
         intScore = 0
@@ -651,141 +605,12 @@ Public Class Game
 
     End Sub
 
+    'Halts all timers
     Private Sub StopGame()
         timGame.Enabled = False
         timDrop.Enabled = False
         timRefreshRate.Enabled = False
         timProjectile.Enabled = False
     End Sub
-
-    '''''''''''''''
-    'Potentially retired code
-    '''''''''''''''
-
-    Private Sub OldDrop()
-
-        ''Drops everything down a line and adds a blank line to the top
-        ''I'm pretty sure I can't simplify this further
-        'lblPlayerRow.Text = lblRow0.Text
-        'lblRow0.Text = lblRow1.Text
-        'lblRow1.Text = lblRow2.Text
-        'lblRow2.Text = lblRow3.Text
-        'lblRow3.Text = lblRow4.Text
-        'lblRow4.Text = lblRow5.Text
-        'lblRow5.Text = lblRow6.Text
-        'lblRow6.Text = lblRow7.Text
-        'lblRow7.Text = lblRow8.Text
-        'lblRow8.Text = lblRow9.Text
-        'lblRow9.Text = lblRow10.Text
-        'lblRow10.Text = lblRow11.Text
-        'lblRow11.Text = lblRow12.Text
-        'lblRow12.Text = lblRow13.Text
-        'lblRow13.Text = lblRow14.Text
-        'lblRow14.Text = lblRow15.Text
-        'lblRow15.Text = lblRow16.Text
-        'lblRow16.Text = lblTopRow.Text
-        'lblTopRow.Text = BLANK_LINE
-
-        ''Puts player back
-        'UpdatePlayer()
-
-
-    End Sub
-
-    Private Sub Shoot()
-
-        'Dim strRow As String
-
-
-        ''Controls shots from the player
-        'lblRow0.Text = BulletTravel(lblRow0.Text)
-        'lblRow1.Text = BulletTravel(lblRow1.Text)
-        'lblRow2.Text = BulletTravel(lblRow2.Text)
-        'lblRow3.Text = BulletTravel(lblRow3.Text)
-        'lblRow4.Text = BulletTravel(lblRow4.Text)
-        'lblRow5.Text = BulletTravel(lblRow5.Text)
-
-
-
-        ''Puts player back
-        'UpdatePlayer()
-
-    End Sub
-
-    Private Sub UpdatePlayer()
-
-        'Prevents player from moving if game has stopped
-        'If blnStop Then
-        '    Return
-        'End If
-
-        ''Saves the current Player line to a String
-        'strPlayerLine = lblPlayerRow.Text
-
-        ''Converts the Player string into an array of Characters
-        'Dim chrPlayerLine() As Char = strPlayerLine.ToCharArray
-
-        ''Searches array for existing PC char and
-        ''replaces current position with a ·, otherwise
-        ''the move leaves a trail
-        'For i As Integer = 0 To (chrPlayerLine.Length - 1) Step 1
-        '    If chrPlayerLine(i) = chrPlayer Then
-        '        chrPlayerLine(i) = BG
-        '    End If
-        'Next
-
-        ''Checks to see if the player touched another element
-        ''HitDetect(chrPlayerLine(intPlayerPos))
-
-        ''Puts the Player at the new location
-        'chrPlayerLine(intPlayerPos) = chrPlayer
-
-        ''Resets Player line to be rebuilt with new positions
-        'strPlayerLine = ""
-        ''Rebuilds Player line with new positions
-        'For i As Integer = 0 To (chrPlayerLine.Length - 1) Step 1
-        '    strPlayerLine &= chrPlayerLine(i)
-        'Next
-
-        ''Updates Player line with new String
-        'lblPlayerRow.Text = strPlayerLine
-
-
-    End Sub
-
-
-
-
-
-
-    'Private Function BulletTravel(ByVal strRow As String) As String
-
-    '    Dim chrRow As Char() = strRow.ToCharArray
-    '    chrRow(intPlayerPos) = "|"
-
-    '    Dim strNewRow As String = ""
-
-    '    For Each c In chrRow
-    '        strNewRow += c
-    '    Next
-
-    '    Return strNewRow
-
-    'End Function
-
-    'Private Function BulletFollow(ByVal strRow As String) As String
-
-    '    Dim chrRow As Char() = strRow.ToCharArray
-    '    chrRow(intPlayerPos) = BG
-
-    '    Dim strNewRow As String = ""
-
-    '    For Each c In chrRow
-    '        strNewRow += c
-    '    Next
-
-    '    Return strNewRow
-
-    'End Function
 
 End Class

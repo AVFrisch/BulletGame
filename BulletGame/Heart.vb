@@ -1,5 +1,6 @@
 ﻿Public Class Heart
     Inherits Obstacle
+    'Health pickup with appropriate ♥ shape
 
     Overrides Property Sym As Char = "♥"c
 

@@ -1,5 +1,6 @@
 ﻿Public MustInherit Class Bullet
     Inherits Piece
+    'Base class for all bullets
 
     Overrides Property Sym As Char = "^"c
 

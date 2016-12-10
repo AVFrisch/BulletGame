@@ -1,5 +1,6 @@
 ﻿Public Class Bam
     Inherits Bullet
+    'Special bullet with ♠ shape that expands on impact
 
     Public Overrides Property Damage As Integer
 

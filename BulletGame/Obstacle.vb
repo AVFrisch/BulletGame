@@ -1,5 +1,6 @@
 ﻿Public Class Obstacle
     Inherits Piece
+    'Standard obstacle that takes two standard bullets to be destroyed
 
     Overrides Property Sym As Char = "+"c
 
@@ -16,6 +17,7 @@
 
         Health -= pDamage
 
+        'Changes shape when damaged
         Sym = "*"c
 
         If Health <= 0 Then

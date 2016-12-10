@@ -1,5 +1,6 @@
 ﻿Public Class Pew
     Inherits Bullet
+    'Standard bullet dealing 50 damage
 
     Public Overrides Property Damage As Integer
 
